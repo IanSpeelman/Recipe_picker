@@ -1,0 +1,23 @@
+{% extends 'recipes/layout.html' %}
+{% block title %}
+Register
+{% endblock %}
+{% block body %}
+<div class="center">
+    <div class="login">
+        <form action="/register" method="post">
+            <input id="username" type="text" placeholder="Username" autocomplete="off" autofocus required
+            name="username">
+            <input id="email" type="email" placeholder="Email" autocomplete="off" autofocus required name="Email">
+            <input id="confirm-email" type="email" placeholder="Confirm email" autocomplete="off" autofocus required
+            name="email-confirmation">
+            <input id="password" type="password" placeholder="Password" autocomplete="off" autofocus required
+            name="Password">
+            <input id="confirm-password" type="password" placeholder="Confirm password" autocomplete="off" autofocus
+            required name="password-confirmation">
+            <button>Register!</button>
+            {% csrf_token %}
+        </form>
+    </div>
+</div>
+{% endblock %}
