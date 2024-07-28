@@ -1,0 +1,18 @@
+{% extends 'recipes/layout.html' %}
+{% block title %}
+Log-In
+{% endblock %}
+{% block body %}
+<div class="center">
+    <div class="login">
+        <form action="/register" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="username" aria-label="username" autofocus autocomplete="off"
+                required>
+            <input type="password" name="password" placeholder="password" aria-label="password" autocomplete="off"
+                required>
+            <button>Log-in!</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

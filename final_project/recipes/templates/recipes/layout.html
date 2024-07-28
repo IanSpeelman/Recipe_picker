@@ -1,5 +1,8 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,12 +10,29 @@
         {% block title %}
         {% endblock %}
     </title>
+    <link rel="stylesheet" href="{% static 'recipes/style/style.css' %}">
+    <script src="{% static 'recipes/scripts/hamburger.js'%}"></script>
 </head>
+
 <body>
+    <header>
+        <div class="hamburger">
+            <img src="{% static 'recipes/images/hamburger.png'%}" alt="">
+        </div>
+        <nav class="collapse">
+            <ul>
+                <li><a href="{% url 'index' %}">index</a></li>
+                <li><a href="{% url 'login' %}">login</a></li>
+                <li><a href="{% url 'register' %}">register</a></li>
+
+            </ul>
+        </nav>
+    </header>
     <div class="content">
         {% block body %}
 
         {% endblock %}
     </div>
 </body>
+
 </html>
