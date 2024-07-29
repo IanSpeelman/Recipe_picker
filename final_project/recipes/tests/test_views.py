@@ -39,32 +39,64 @@ class test_register(TestCase):
         response = self.client.get(reverse("register"))
         self.assertEqual(response.status_code, 200)
 
-    @unittest.skip("Not implemented yet")
     def test_register_POST_allowed_information(self):
-        response = self.client.get(reverse("login"))
+        response = self.client.post(reverse("register"), {
+            "username": "spielmeister",
+            "email": "spielmeister@gmail.com",
+            "email-confirmation": "spielmeister@gmail.com",
+            "password": "password",
+            "password-confirmation": "password",
+        })
         self.assertEqual(response.status_code, 302)
         pass
 
-    @unittest.skip("Not implemented yet")
     def test_register_POST_missing_information(self):
-        response = self.client.get(reverse("login"))
+        response = self.client.post(reverse("register"), {
+            "username": "",
+            "email": "spielmeister@gmail.com",
+            "email-confirmation": "spielmeister@gmail.com",
+            "password": "password",
+            "password-confirmation": "password",
+        })
         self.assertEqual(response.status_code, 406)
         pass
 
-    @unittest.skip("Not implemented yet")
     def test_register_POST_passwords_no_match(self):
-        response = self.client.get(reverse("login"))
+        response = self.client.post(reverse("register"), {
+            "username": "spielmeister",
+            "email": "spielmeister@gmail.com",
+            "email-confirmation": "spielmeister@gmail.com",
+            "password": "passwordd",
+            "password-confirmation": "password",
+        })
         self.assertEqual(response.status_code, 406)
         pass
 
-    @unittest.skip("Not implemented yet")
     def test_register_POST_emails_no_match(self):
-        response = self.client.get(reverse("login"))
+        response = self.client.post(reverse("register"), {
+            "username": "spielmeister",
+            "email": "spielmeister@gmial.com",
+            "email-confirmation": "spielmeister@gmail.com",
+            "password": "password",
+            "password-confirmation": "password",
+        })
         self.assertEqual(response.status_code, 406)
         pass
 
-    @unittest.skip("Not implemented yet")
     def test_register_POST_duplicate_user(self):
-        response = self.client.get(reverse("login"))
+        response = self.client.post(reverse("register"), {
+            "username": "spielmeister",
+            "email": "spielmeister@gmail.com",
+            "email-confirmation": "spielmeister@gmail.com",
+            "password": "password",
+            "password-confirmation": "password",
+        })
+        response = self.client.post(reverse("register"), {
+            "username": "spielmeister",
+            "email": "spielmeister@gmail.com",
+            "email-confirmation": "spielmeister@gmail.com",
+            "password": "password",
+            "password-confirmation": "password",
+        })
         self.assertEqual(response.status_code, 409)
         pass
