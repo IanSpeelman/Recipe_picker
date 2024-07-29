@@ -23,15 +23,15 @@ def register(request):
             return render(request, "recipes/register.html", status=406)
         
         #try to create a new user    
-        # try:
-        user = User.objects.create_user(username=request.POST.get("username"),
-                            password=request.POST.get("password"),
-                            email=request.POST.get("email"))
-        user.save()
-        return HttpResponseRedirect(reverse("index"))
+        try:
+            user = User.objects.create_user(username=request.POST.get("username"),
+                                password=request.POST.get("password"),
+                                email=request.POST.get("email"))
+            user.save()
+            return HttpResponseRedirect(reverse("index"))
         # # if new user cannot be created, handle the problem by rendering the page again
-        # except:
-        #     return render(request, "recipes/register.html", status=409)
+        except:
+            return render(request, "recipes/register.html", status=409)
 
     return render(request, "recipes/register.html")
 
