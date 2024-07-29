@@ -5,33 +5,41 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>
         {% block title %}
         {% endblock %}
     </title>
-    <link rel="stylesheet" href="{% static 'recipes/style/style.css' %}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.1/css/bulma.min.css">
+    <!-- <link rel="stylesheet" href="{% static 'recipes/style/style.css' %}"> -->
     <script src="{% static 'recipes/scripts/hamburger.js'%}"></script>
 </head>
 
 <body>
-    <header>
-        <div class="hamburger">
-            <img src="{% static 'recipes/images/hamburger.png'%}" alt="">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a role="button" class="navbar-burger" id="burger-button" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
         </div>
-        <nav class="collapse">
-            <ul>
-                <li><a href="{% url 'index' %}">index</a></li>
+        <div class="navbar-menu" id="nav-items">
+            <div class="navbar-end">
+                <a class="navbar-item" href="{% url 'index' %}">Index</a>
                 {% if user.is_authenticated %}
-                <li><a href="{% url 'logout' %}">logout</a></li>
+                <a class="navbar-item" href="{% url 'newrecipe' %}">Create recipe</a>
+                <a class="navbar-item" href="{% url 'logout' %}">Logout</a>
                 {% else %}
-                <li><a href="{% url 'login' %}">login</a></li>
-                <li><a href="{% url 'register' %}">register</a></li>
+                <a class="navbar-item" href="{% url 'login' %}">Login</a>
+                <a class="navbar-item" href="{% url 'register' %}">Register</a>
                 {% endif %}
+            </div>
 
-            </ul>
-        </nav>
-    </header>
+        </div>
+    </nav>
+
     <div class="content">
         {% block body %}
 

@@ -64,3 +64,13 @@ def logout(request):
     if request.user.is_authenticated:
         auth_logout(request)
     return HttpResponseRedirect(reverse("index"))
+
+def new_recipe(request):
+    if request.user.is_authenticated:
+
+        if request.method == "POST":
+            print("post")
+        
+        return render(request, "recipes/new_recipe.html")
+    else:
+        return HttpResponseRedirect(reverse("index"))
