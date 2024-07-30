@@ -1,34 +1,97 @@
 {% extends 'recipes/layout.html' %}
+{% load static %}
 {% block title %}
 new recipe
 {% endblock %}
 {% block body %}
-<div class="center">
-    <div class="login">
-        <form action="{% url 'newrecipe' %}" method="post">
-            {% csrf_token %}
-            <div id="main-info">
-                <input type="text" name="title" aria-label="title" placeholder="title" required autofocus autocapitalize="on" autocomplete="off">
-                <input type="text" name="description" aria-label="description" placeholder="description" require">
-                <input type="text" name="servings" aria-label="servings" placeholder="servings" require">
-                <input type="text" name="cuisine" aria-label="cuisine" placeholder="cuisine" require">
-                <input type="number" name="cooking-time" aria-label="cooking-time" placeholder="cooking time (minutes)" require">
-                <input type="number" name="preperation-time" aria-label="preperation-time" placeholder="preperation time (minutes)" require">
-                <input type="text" name="category" aria-label="category" placeholder="category" require">
-                <input type="text" name="image_url" aria-label="image_url" placeholder="image url" require">
+<div class="container">
+    <h1 class="title is-3">Create a new recipe</h1>
+    <form action="{% url 'newrecipe' %}" method="post">
+        {% csrf_token %}
+        <h2 class="title is-4">Recipe</h2>
+        <div class="fixed-grid has-1-cols-mobile has-2-cols-desktop">
+            <div class="grid">
+                <div class="field">
+                    <div class="label">Title</div>
+                    <input class="input" type="text" name="title" aria-label="title" placeholder="title" required
+                        autofocus autocapitalize="on" autocomplete="off">
+                </div>
+                <div class="field">
+                    <div class="label">description</div>
+                    <input autocomplete="off" class="input" type="text" name="description" aria-label="description"
+                        placeholder="description" required">
+                </div>
+                <div class="field">
+                    <div class="label">Servings</div>
+                    <input autocomplete="off" class="input" type="number" min="0" name="servings" aria-label="servings" placeholder="servings"
+                        required">
+                </div>
+                <div class="field">
+                    <div class="label">Cuisine</div>
+                    <input autocomplete="off" class="input" type="text" name="cuisine" aria-label="cuisine" placeholder="cuisine" required">
+                </div>
+                <div class="field">
+                    <div class="label">Cooking time: (min)</div>
+                    <input autocomplete="off" class="input" type="number" name="cooking-time" aria-label="cooking-time"
+                        placeholder="cooking time (minutes)" required min="0">
+                </div>
+                <div class="field">
+                    <div class="label">Preperation time (min)</div>
+                    <input autocomplete="off" class="input" type="number" name="preperation-time" aria-label="preperation-time"
+                        placeholder="preperation time (minutes)" required min="0">
+                </div>
+                <div class="field">
+                    <div class="label">Category</div>
+                    <input autocomplete="off" class="input" type="text" name="category" aria-label="category" placeholder="category"
+                        require">
+                </div>
+                <div class="field">
+                    <div class="label">Image url</div>
+                    <input autocomplete="off" class="input" type="text" name="image-url" aria-label="image url" placeholder="image url"
+                        require">
+                </div>
+                <div class="field">
+                    <h2 class="title is-4">Ingredients</h2>
+                    <div class="field" id="ingredient-list">
+                        <div class="field has-addons">
+                            <div class="control">
+                                <div class="select">
+                                    <select name="unit[0]">
+                                        <option value="g">Grams</option>
+                                        <option value="ml">mililiters</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="control">
+                                <input autocomplete="off" type="number" class="input" name="amount[0]" aria-label="Amount"
+                                    placeholder="Amount" min="0" required>
+                            </div>
+                            <div class="control">
+                                <input autocomplete="off" type="text" class="input" name="ingredient[0]" aria-label="Ingredient"
+                                    placeholder="Ingredient" required>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="button is-success" id="new-ingredient">Add ingredient</button>
+                </div>
+                <div class="field">
+                    <h2 class="title is-4">Instructions</h2>
+                    <div class="field" id="instruction-list">
+                        <div class="field">
+                            <input autocomplete="off" class="input" type="text" name="instruction[0]" aria-label="instruction"
+                                placeholder="Instruction" required>
+                        </div>
+                    </div>
+                    <div class=" field">
+                        <button class=" button is-success" id="new-instruction">Add instruction</button>
+                    </div>
+                </div>
+                <div class="field">
+                    <button class=" button is-success is-dark">Create new recipe!</button>
+                </div>
             </div>
-            <div id="ingredients">
-                <input type="text" name="ingredient" aria-label="ingredient" placeholder="ingredient">
-                <input type="text" name="amount" aria-label="amount" placeholder="amount">
-                <input type="text" name="unit" aria-label="unit" placeholder="unit">
-            </div>
-            <div id="instructions">
-                <input type="text" name="instruction" aria-label="instruction" placeholder="instruction"">
-            </div>
-
-            <button>Create new recipe!</button>
-        </form>
-    </div>
+        </div>
+    </form>
 </div>
-
+<script src="{% static 'recipes/scripts/addfields.js' %}"></script>
 {% endblock %}

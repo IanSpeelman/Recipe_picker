@@ -3,16 +3,19 @@
 Log-In
 {% endblock %}
 {% block body %}
-<div class="center">
-    <div class="login">
-        <form action="{% url 'login' %}" method="post">
-            {% csrf_token %}
-            <input type="text" name="username" placeholder="username" aria-label="username" autofocus autocomplete="off"
-                required>
-            <input type="password" name="password" placeholder="password" aria-label="password" autocomplete="off"
-                required>
-            <button>Log-in!</button>
-        </form>
-    </div>
+<div class="container">
+    <form action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <div class="field">
+            <div class="label">Username</div>
+            <input class="input" type="text" name="username" aria-label="username" placeholder="Username" required
+                autofocus autocapitalize="on" autocomplete="off">
+        </div>
+        <div class="field">
+            <div class="label">Password</div>
+            <input class="input" type="password" name="password" aria-label="password" placeholder="Password" require">
+        </div>
+        <button class="button is-success is-dark">Log-in!</button>
+    </form>
 </div>
 {% endblock %}
