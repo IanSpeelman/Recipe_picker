@@ -2,6 +2,8 @@ from django.test import  TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 
+from ..models import Recipe, Ingredient, Instruction
+
 import unittest
 
 class test_index(TestCase):
@@ -132,12 +134,63 @@ class testNewRecipe(TestCase):
         response = self.client.get(reverse("newrecipe"))
         self.assertEqual(response.status_code, 302)
 
-    @unittest.skip("not implemented")
     def test_new_recipe_POST(self):
-        pass
-    @unittest.skip("not implemented")
+        response = self.client.post(reverse("newrecipe"),{
+            "title": "Chief Quality Orchestrator",
+            "description": "Sit commodi est praesentium quo placeat a impedit.",
+            "servings": "97",
+            "cuisine": "Maxime eum id nemo.",
+            "cooking-time": "207",
+            "preperation-time": "265",
+            "category": "Antigua and Barbuda",
+            "image-url":"Doloremque deserunt recusandae repellat laborum non culpa.",
+            "unit[0]": "g",
+            "amount[0]": "651",
+            "ingredient[0]":	"Numquam temporibus corporis.",
+            "instruction[0]": "Recusandae ab hic deserunt reiciendis tenetur ab.",
+        })
+        recipe = Recipe.objects.all().last()
+        instruction = Instruction.objects.filter(recipe=recipe).last()
+        ingredient = Ingredient.objects.filter(recipe=recipe).last()
+        self.assertEqual(recipe.title, "Chief Quality Orchestrator")
+        self.assertEqual(instruction.instruction, "Recusandae ab hic deserunt reiciendis tenetur ab.")
+        self.assertEqual(ingredient.ingredient, "Numquam temporibus corporis.")
+        self.assertEqual(response.status_code, 302)
+        self.assertTemplateUsed("recipes/recipe.html")
+
     def test_new_recipe_POST_not_logged_in(self):
-        pass
-    @unittest.skip("not implemented")
+        self.client.logout()
+        response = self.client.post(reverse("newrecipe"),{
+            "title": "Chief Quality Orchestrator",
+            "description": "Sit commodi est praesentium quo placeat a impedit.",
+            "servings": "97",
+            "cuisine": "Maxime eum id nemo.",
+            "cooking-time": "207",
+            "preperation-time": "265",
+            "category": "Antigua and Barbuda",
+            "image-url":"Doloremque deserunt recusandae repellat laborum non culpa.",
+            "unit[0]": "g",
+            "amount[0]": "651",
+            "ingredient[0]":	"Numquam temporibus corporis.",
+            "instruction[0]": "Recusandae ab hic deserunt reiciendis tenetur ab.",
+        })
+        self.assertEqual(response.status_code, 302)
+        self.assertTemplateUsed("recipes/login.html")
+
     def test_new_recipe_POST_requred_field_missing(self):
-        pass
+        response = self.client.post(reverse("newrecipe"),{
+            "title": "Chief Quality Orchestrator",
+            "description": "Sit commodi est praesentium quo placeat a impedit.",
+            "servings": "97",
+            "cuisine": "Maxime eum id nemo.",
+            "category": "Antigua and Barbuda",
+            "image-url":"Doloremque deserunt recusandae repellat laborum non culpa.",
+            "unit[0]": "g",
+            "amount[0]": "651",
+            "ingredient[0]":	"Numquam temporibus corporis.",
+            "instruction[0]": "Recusandae ab hic deserunt reiciendis tenetur ab.",
+        })
+        self.assertEqual(response.status_code, 406)
+        self.assertTemplateUsed("recipes/new_recipe.html")
+
+        
