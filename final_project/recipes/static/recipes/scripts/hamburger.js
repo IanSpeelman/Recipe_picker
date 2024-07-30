@@ -1,7 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-	nav = document.querySelector("nav");
-	hamburger = document.querySelector(".hamburger");
-	hamburger.addEventListener("click", () => {
-		nav.classList.toggle("collapse");
+	nav = document.querySelector("#nav-items");
+	burger = document.querySelector("#burger-button");
+
+	burger.addEventListener("click", () => {
+		nav.classList.toggle("is-active");
+		burger.classList.toggle("is-active");
 	});
 });

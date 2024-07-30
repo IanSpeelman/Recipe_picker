@@ -116,3 +116,28 @@ class test_register(TestCase):
     #         "password-confirmation": "password",
     #     })
     #     self.assertEqual(response.status_code, 409)
+
+
+class testNewRecipe(TestCase):
+    def setUp(self):
+        User.objects.create_user(username="test_user", password="password")
+        self.client.login(username="test_user", password="password")
+    
+    def test_new_recipe_GET(self):
+        response = self.client.get(reverse("newrecipe"))
+        self.assertEqual(response.status_code, 200)
+
+    def test_new_recipe_GET_not_logged_in(self):
+        self.client.logout()
+        response = self.client.get(reverse("newrecipe"))
+        self.assertEqual(response.status_code, 302)
+
+    @unittest.skip("not implemented")
+    def test_new_recipe_POST(self):
+        pass
+    @unittest.skip("not implemented")
+    def test_new_recipe_POST_not_logged_in(self):
+        pass
+    @unittest.skip("not implemented")
+    def test_new_recipe_POST_requred_field_missing(self):
+        pass
