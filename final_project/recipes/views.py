@@ -8,16 +8,6 @@ from .models import Recipe, Ingredient, Instruction
 
 # Create your views here.
 def index(request):
-    #! this can be removed when done testing
-    #! comment out for unittest
-    # recipe = Recipe.objects.get(title="test recipe")
-    # steps = Instruction.objects.filter(recipe=recipe)
-    # ingredients = Ingredient.objects.filter(recipe=recipe)
-    # print(recipe.title)
-    # for step in steps:
-    #     print(f"step {step.instruction_number}:{step.instruction}")
-    # for ingredient in ingredients:
-    #     print(f"{ingredient.amount}{ingredient.unit} of {ingredient.ingredient}")
     return render(request, "recipes/index.html")
 
 def register(request):
@@ -53,8 +43,6 @@ def register(request):
     return render(request, "recipes/register.html")
 
 def login(request):
-    if request.user.is_authenticated:
-        print(request.user.username)
     if(request.method == "POST"):
         username = request.POST.get("username", "")
         password = request.POST.get("password", "")
@@ -95,20 +83,17 @@ def new_recipe(request):
                 Recipe.objects.create(title=title, description=description, servings=servings, cuisine=cuisine, cooking_time=cooking_time, 
                                     preperation_time=preperation_time, category=category, image_url=image_url, creator=request.user)
                 recipe  = Recipe.objects.all().last()
-                print(recipe.id)
                 # get every ingredient and instruction that is added to the recipe and store them in a list
                 i = 0
                 instructions = []
                 while bool(request.POST.get(f"instruction[{i}]")):
                     Instruction.objects.create(recipe=recipe, instruction_number=i+1, instruction=request.POST.get(f"instruction[{i}]"))
-                    # print(Instruction.objects.all().last())
                     i += 1
                 i = 0
                 ingredients = []
                 while bool(request.POST.get(f"ingredient[{i}]")):
                     Ingredient.objects.create(recipe=recipe, unit=request.POST.get(f"unit[{i}]"), 
                                             amount=request.POST.get(f"amount[{i}]"), ingredient=request.POST.get(f"ingredient[{i}]"))
-                    # print(Ingredient.objects.all().last())
                     i += 1
 
                 return HttpResponseRedirect(reverse("recipe", kwargs={"recipe_id": recipe.id}))
@@ -121,6 +106,16 @@ def new_recipe(request):
     
 
 def recipe(request, recipe_id):
-    return render(request,"recipes/recipe.html", {
-        "recipe_id": recipe_id,
-    })
+    if request.method == "POST":
+        return HttpResponseRedirect(reverse("index"))
+    try:
+        recipe = Recipe.objects.get(pk=recipe_id)
+        ingredients = Ingredient.objects.filter(recipe=recipe)
+        instructions = Instruction.objects.filter(recipe=recipe)
+        return render(request,"recipes/recipe.html", {
+            "recipe": recipe,
+            "instructions": instructions,
+            "ingredients": ingredients,
+        })
+    except:
+        return HttpResponseRedirect(reverse("index"))
