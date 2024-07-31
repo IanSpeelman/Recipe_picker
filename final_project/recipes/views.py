@@ -4,10 +4,10 @@ from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 
+from .models import Recipe, Ingredient, Instruction
+
 # Create your views here.
 def index(request):
-    if request.user.is_authenticated:
-        print(f"the current user is {request.user}")
     return render(request, "recipes/index.html")
 
 def register(request):
@@ -43,8 +43,6 @@ def register(request):
     return render(request, "recipes/register.html")
 
 def login(request):
-    if request.user.is_authenticated:
-        print(request.user.username)
     if(request.method == "POST"):
         username = request.POST.get("username", "")
         password = request.POST.get("password", "")
@@ -66,11 +64,58 @@ def logout(request):
     return HttpResponseRedirect(reverse("index"))
 
 def new_recipe(request):
+    #check if user is logged in
     if request.user.is_authenticated:
 
         if request.method == "POST":
-            print("post")
+            # get all information to be stored
+            title = request.POST.get("title")
+            description = request.POST.get("description")
+            servings = request.POST.get("servings")
+            cuisine = request.POST.get("cuisine")
+            cooking_time = request.POST.get("cooking-time")
+            preperation_time = request.POST.get("preperation-time")
+            category = request.POST.get("category")
+            image_url = request.POST.get("image-url")
+            if all(v is not None for v in [title,description,servings,cuisine,cooking_time,
+                                           preperation_time,category,image_url]):
+                
+                Recipe.objects.create(title=title, description=description, servings=servings, cuisine=cuisine, cooking_time=cooking_time, 
+                                    preperation_time=preperation_time, category=category, image_url=image_url, creator=request.user)
+                recipe  = Recipe.objects.all().last()
+                # get every ingredient and instruction that is added to the recipe and store them in a list
+                i = 0
+                instructions = []
+                while bool(request.POST.get(f"instruction[{i}]")):
+                    Instruction.objects.create(recipe=recipe, instruction_number=i+1, instruction=request.POST.get(f"instruction[{i}]"))
+                    i += 1
+                i = 0
+                ingredients = []
+                while bool(request.POST.get(f"ingredient[{i}]")):
+                    Ingredient.objects.create(recipe=recipe, unit=request.POST.get(f"unit[{i}]"), 
+                                            amount=request.POST.get(f"amount[{i}]"), ingredient=request.POST.get(f"ingredient[{i}]"))
+                    i += 1
+
+                return HttpResponseRedirect(reverse("recipe", kwargs={"recipe_id": recipe.id}))
+            else:
+                return render(request, "recipes/new_recipe.html", status=406)
         
         return render(request, "recipes/new_recipe.html")
     else:
+        return HttpResponseRedirect(reverse("login"))
+    
+
+def recipe(request, recipe_id):
+    if request.method == "POST":
+        return HttpResponseRedirect(reverse("index"))
+    try:
+        recipe = Recipe.objects.get(pk=recipe_id)
+        ingredients = Ingredient.objects.filter(recipe=recipe)
+        instructions = Instruction.objects.filter(recipe=recipe)
+        return render(request,"recipes/recipe.html", {
+            "recipe": recipe,
+            "instructions": instructions,
+            "ingredients": ingredients,
+        })
+    except:
         return HttpResponseRedirect(reverse("index"))
