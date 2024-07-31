@@ -3,5 +3,46 @@
 Recipe
 {% endblock %}
 {% block body %}
-<p>{{ recipe_id }}</p>
+<div class="container">
+    <div class="columns margin-horizontal margin-bottom">
+        <div class="column center-img">
+            <img class="img" src="{{ recipe.image_url }}" alt="{{ recipe.title }}">
+        </div>
+        <div class="column">
+            <h1>{{ recipe.title }}</h1>
+            <p id="description">{{ recipe.description }}</p>
+            <div class="columns margin-top listbox">
+                <div class="column">
+                    <p>servings: {{ recipe.servings }} people</p>
+                    <p>cuisine: {{ recipe.cuisine }}</p>
+                    <p>category: {{ recipe.category }}</p>
+                </div>
+                <div class="column">
+                    <p>cooking time: {{ recipe.cooking_time }} minutes</p>
+                    <p>preperation time: {{ recipe.preperation_time }} minutes</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="columns">
+        <div class="column">
+            <h2>ingredients: </h2>
+            {% for ingredient in ingredients %}
+            <div class="listbox">
+                <p>{{ ingredient.amount }}{{ ingredient.unit }} of {{ ingredient.ingredient }}</p>
+            </div>
+            {% endfor%}
+        </div>
+        <div class="column">
+            <h2>instructions: </h2>
+            {% for instruction in instructions %}
+            <div class="listbox">
+                <p><span class="instruction-number">{{ instruction.instruction_number }}</span> {{ instruction.instruction }}</p>
+
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
 {% endblock %}
