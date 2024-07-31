@@ -193,4 +193,28 @@ class testNewRecipe(TestCase):
         self.assertEqual(response.status_code, 406)
         self.assertTemplateUsed("recipes/new_recipe.html")
 
+class testRecipeShow(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="testuser", password="password")
+        recipe = Recipe(creator=self.user, title="test recipe", description="this is a test recipe", servings=4, cuisine="mexican", cooking_time=15,
+               preperation_time=15, category="dinner", image_url="somerandomlink")
+        recipe.save()
+        Ingredient.objects.create(recipe=recipe, unit="g", amount=250, ingredient="minced meat").save()
+        Instruction.objects.create(recipe=recipe, instruction_number=1, instruction="cook the minced meat as described on the package").save()
         
+    
+    def test_recipe_GET(self):
+        response = self.client.get(reverse("recipe", kwargs={"recipe_id": 1}))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed("recipes/recipe.html")
+
+    def test_recipe_POST(self):
+        response = self.client.post(reverse("recipe", kwargs={"recipe_id": 1}))
+        self.assertEqual(response.status_code, 302)
+        self.assertTemplateUsed("recipes/index.html")
+    
+    def test_recipe_GET_recipe_does_not_exist(self):
+        response = self.client.get(reverse("recipe", kwargs={"recipe_id": 999}))
+        self.assertEqual(response.status_code, 302)
+        self.assertTemplateUsed("recipes/index.html")
+
