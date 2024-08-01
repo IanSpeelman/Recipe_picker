@@ -8,7 +8,10 @@ from .models import Recipe, Ingredient, Instruction
 
 # Create your views here.
 def index(request):
-    return render(request, "recipes/index.html")
+    recipes = Recipe.objects.all()
+    return render(request, "recipes/index.html", {
+        "recipes": recipes,
+    })
 
 def register(request):
     if(request.method == "POST"):

@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
 	const newInstruction = document.querySelector("#new-instruction");
 	const ingredientList = document.querySelector("#ingredient-list");
 	const instructionList = document.querySelector("#instruction-list");
-    let instructions = 1
-    let ingredients = 1
+	let instructions = 1;
+	let ingredients = 1;
 	newInstruction.addEventListener("click", (e) => {
 		e.preventDefault();
 		let div = document.createElement("div");
@@ -18,11 +18,16 @@ document.addEventListener("DOMContentLoaded", () => {
 		input.setAttribute("autocomplete", "off");
 		div.append(input);
 		instructionList.append(div);
-        instructions++;
+		instructions++;
 	});
 	const options = [
 		{ unit: "Grams", short: "g" },
-		{ unit: "mililiters", short: "ml" },
+		{ unit: "Kilograms", short: "kg" },
+		{ unit: "Milliliters", short: "ml" },
+		{ unit: "Liters", short: "L" },
+		{ unit: "Pieces", short: "pcs" },
+		{ unit: "Teaspoons", short: "tsp" },
+		{ unit: "Tablespoons", short: "tbsp" },
 	];
 	newIngredient.addEventListener("click", (e) => {
 		e.preventDefault();
@@ -66,6 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
 		control.append(input);
 		field.append(control);
 		ingredientList.append(field);
-        ingredients++;
+		ingredients++;
 	});
 });

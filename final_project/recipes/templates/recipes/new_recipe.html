@@ -13,18 +13,15 @@ new recipe
             <div class="grid">
                 <div class="field">
                     <div class="label">Title</div>
-                    <input class="input" type="text" name="title" aria-label="title" placeholder="title" required
-                        autofocus autocapitalize="on" autocomplete="off">
+                    <input class="input" type="text" name="title" aria-label="title" placeholder="title" required autofocus autocapitalize="on" autocomplete="off">
                 </div>
                 <div class="field">
                     <div class="label">description</div>
-                    <input autocomplete="off" class="input" type="text" name="description" aria-label="description"
-                        placeholder="description" required">
+                    <input autocomplete="off" class="input" type="text" name="description" aria-label="description" placeholder="description" required">
                 </div>
                 <div class="field">
                     <div class="label">Servings</div>
-                    <input autocomplete="off" class="input" type="number" min="0" name="servings" aria-label="servings" placeholder="servings"
-                        required">
+                    <input autocomplete="off" class="input" type="number" min="0" name="servings" aria-label="servings" placeholder="servings" required">
                 </div>
                 <div class="field">
                     <div class="label">Cuisine</div>
@@ -32,23 +29,19 @@ new recipe
                 </div>
                 <div class="field">
                     <div class="label">Cooking time: (min)</div>
-                    <input autocomplete="off" class="input" type="number" name="cooking-time" aria-label="cooking-time"
-                        placeholder="cooking time (minutes)" required min="0">
+                    <input autocomplete="off" class="input" type="number" name="cooking-time" aria-label="cooking-time" placeholder="cooking time (minutes)" required min="0">
                 </div>
                 <div class="field">
                     <div class="label">Preperation time (min)</div>
-                    <input autocomplete="off" class="input" type="number" name="preperation-time" aria-label="preperation-time"
-                        placeholder="preperation time (minutes)" required min="0">
+                    <input autocomplete="off" class="input" type="number" name="preperation-time" aria-label="preperation-time" placeholder="preperation time (minutes)" required min="0">
                 </div>
                 <div class="field">
                     <div class="label">Category</div>
-                    <input autocomplete="off" class="input" type="text" name="category" aria-label="category" placeholder="category"
-                        require">
+                    <input autocomplete="off" class="input" type="text" name="category" aria-label="category" placeholder="category" require">
                 </div>
                 <div class="field">
                     <div class="label">Image url</div>
-                    <input autocomplete="off" class="input" type="text" name="image-url" aria-label="image url" placeholder="image url"
-                        require">
+                    <input autocomplete="off" class="input" type="text" name="image-url" aria-label="image url" placeholder="image url" require">
                 </div>
                 <div class="field">
                     <h2 class="title is-4">Ingredients</h2>
@@ -58,17 +51,20 @@ new recipe
                                 <div class="select">
                                     <select name="unit[0]">
                                         <option value="g">Grams</option>
-                                        <option value="ml">mililiters</option>
+                                        <option value="kg">Kilograms</option>
+                                        <option value="ml">Milliliters</option>
+                                        <option value="L">Liters</option>
+                                        <option value="pcs">Pieces</option>
+                                        <option value="tsp">Teaspoons</option>
+                                        <option value="tbsp">Tablespoons</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="control">
-                                <input autocomplete="off" type="number" class="input" name="amount[0]" aria-label="Amount"
-                                    placeholder="Amount" min="0" required>
+                                <input autocomplete="off" type="number" class="input" name="amount[0]" aria-label="Amount" placeholder="Amount" min="0" required>
                             </div>
                             <div class="control">
-                                <input autocomplete="off" type="text" class="input" name="ingredient[0]" aria-label="Ingredient"
-                                    placeholder="Ingredient" required>
+                                <input autocomplete="off" type="text" class="input" name="ingredient[0]" aria-label="Ingredient" placeholder="Ingredient" required>
                             </div>
                         </div>
                     </div>
@@ -78,8 +74,7 @@ new recipe
                     <h2 class="title is-4">Instructions</h2>
                     <div class="field" id="instruction-list">
                         <div class="field">
-                            <input autocomplete="off" class="input" type="text" name="instruction[0]" aria-label="instruction"
-                                placeholder="Instruction" required>
+                            <input autocomplete="off" class="input" type="text" name="instruction[0]" aria-label="instruction" placeholder="Instruction" required>
                         </div>
                     </div>
                     <div class=" field">

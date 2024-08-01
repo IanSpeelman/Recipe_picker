@@ -12,7 +12,7 @@
 	border-radius: 1em;
 	margin-right: 3em;
 }
-.center-img {
+.center {
 	display: flex;
 	justify-content: center;
 }
@@ -41,6 +41,14 @@
 	border-right: 1px solid#ffffff10;
 	margin-right: 0.5em;
 	padding-right: 0.5em;
+}
+.grid > .restrict-width {
+	max-width: 380px;
+}
+.list img {
+	width: 350px;
+	height: 200px;
+	object-fit: cover;
 }
 @media (prefers-color-scheme: light) {
 	.listbox {
