@@ -31,6 +31,14 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 		function dragend(e) {
 			e.target.classList.remove("dragging");
+			let items = document.querySelector("#instruction-list").children;
+			items = [...items];
+
+			let c = 0;
+			for (item of items) {
+				item.setAttribute("name", `instruction[${c}]`);
+				c++;
+			}
 		}
 		function dragover(e) {
 			e.preventDefault();
