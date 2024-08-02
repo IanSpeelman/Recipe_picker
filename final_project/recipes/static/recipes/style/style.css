@@ -50,6 +50,12 @@
 	height: 200px;
 	object-fit: cover;
 }
+.dragging {
+	opacity: 0.2;
+}
+div.control > span {
+	z-index: 1000;
+}
 @media (prefers-color-scheme: light) {
 	.listbox {
 		background-color: #00000020;
