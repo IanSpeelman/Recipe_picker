@@ -98,14 +98,27 @@ function destroyListeners() {
 		button.onclick = (e) => {
 			const target = e.target.parentElement.parentElement;
 			if (target.id !== "instruction-model" && document.querySelectorAll(".instruction-model").length > 1 ) {
-				e.target.parentElement.parentElement.remove();
-				let c = 0;
+				if(e.target.tagName == "I"){
+					let target = e.target.parentElement.parentElement.parentElement 
+					target.remove();
+				}
+				else{
+					let target = e.target.parentElement.parentElement
+					target.remove();
+				}				let c = 0;
 				[...document.querySelectorAll(".instruction-model")].forEach(element => {
 					element.children[0].children[0].setAttribute("name", `instruction[${c}]`)
 					c++
 				});
 			} else if (target.id !== "ingredient-model" && document.querySelectorAll(".ingredient-model").length > 1 ) {
-				e.target.parentElement.parentElement.remove();
+				if(e.target.tagName == "I"){
+					let target = e.target.parentElement.parentElement.parentElement 
+					target.remove();
+				}
+				else{
+					let target = e.target.parentElement.parentElement
+					target.remove();
+				}
 				let c = 0;
 				[...document.querySelectorAll(".ingredient-model")].forEach(element => {
 					element.children[0].children[0].children[0].setAttribute("name", `unit[${c}]`)

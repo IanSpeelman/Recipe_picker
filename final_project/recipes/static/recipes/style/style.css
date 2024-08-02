@@ -53,8 +53,11 @@
 .dragging {
 	opacity: 0.2;
 }
-div.control > span {
-	z-index: 1000;
+span.icon.is-small.is-right.destroy{
+	z-index: 100;
+	padding: 1em;
+	pointer-events: all;
+	cursor: pointer;
 }
 @media (prefers-color-scheme: light) {
 	.listbox {

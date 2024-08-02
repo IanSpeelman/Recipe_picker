@@ -65,9 +65,9 @@ new recipe
                             </div>
                             <div class="control has-icons-right">
                                 <input autocomplete="off" type="text" class="input" name="ingredient[0]" aria-label="Ingredient" placeholder="Ingredient" required>
-                            </div>
-                            <div class="control destroy">
-                                <img class="input" src="{% static 'recipes/images/close-button.png' %}" alt="close-button">
+                                <span class="icon is-small is-right destroy">
+                                    <i class="fa-solid fa-x"></i>
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -77,11 +77,11 @@ new recipe
                     <h2 class="title is-4">Instructions</h2>
                     <div class="field" id="instruction-list">
                         <div class="field control has-icons-right drag-and-drop has-addons instruction-model" draggable="true">
-                            <div class="control is-expanded">
+                            <div class="control has-icons-right is-expanded">
                                 <input autocomplete="off" class="input" type="text" name="instruction[0]" aria-label="instruction" placeholder="Instruction" required>
-                            </div>
-                            <div class="control destroy">
-                                <img class="input" src="{% static 'recipes/images/close-button.png' %}" alt="close-button">
+                                <span class="icon is-small is-right destroy">
+                                    <i class="fa-solid fa-x"></i>
+                                </span>
                             </div>
                         </div>
                     </div>
