@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+	let dragAndDrop = document.querySelectorAll(".drag-and-drop");
 	const newIngredient = document.querySelector("#new-ingredient");
 	const newInstruction = document.querySelector("#new-instruction");
 	const ingredientList = document.querySelector("#ingredient-list");
@@ -8,9 +9,11 @@ document.addEventListener("DOMContentLoaded", () => {
 	newInstruction.addEventListener("click", (e) => {
 		e.preventDefault();
 		let div = document.createElement("div");
-		div.setAttribute("class", "field");
+		div.classList.add("field", "drag-and-drop");
+		div.setAttribute("draggable", "true"); //! testing
 		let input = document.createElement("input");
-		input.setAttribute("class", "input");
+		input.classList.add("input");
+		// input.setAttribute("draggable", "true"); //! testing
 		input.setAttribute("type", "text");
 		input.setAttribute("name", `instruction[${instructions}]`);
 		input.setAttribute("aria-label", "instruction");
@@ -19,6 +22,45 @@ document.addEventListener("DOMContentLoaded", () => {
 		div.append(input);
 		instructionList.append(div);
 		instructions++;
+		// drag and drop functionality
+		let items = document.querySelectorAll(".drag-and-drop");
+		let container = document.querySelector("#instruction-list");
+
+		function dragstart(e) {
+			e.target.classList.add("dragging");
+		}
+		function dragend(e) {
+			e.target.classList.remove("dragging");
+		}
+		function dragover(e) {
+			e.preventDefault();
+			let dragging = document.querySelector(".dragging");
+			siblings = document.querySelectorAll(
+				".drag-and-drop:not(.dragging)",
+			);
+			closestElement = [...siblings].reduce(
+				(closest, sibling) => {
+					let box = sibling.getBoundingClientRect();
+					let offset = e.clientY - box.top - box.height / 2;
+					if (offset < 0 && offset > closest.offset) {
+						return { element: sibling, offset: offset };
+					} else {
+						return closest;
+					}
+				},
+				{ offset: -Infinity },
+			);
+			if (closestElement.element !== undefined) {
+				container.insertBefore(dragging, closestElement.element);
+			} else {
+				container.append(dragging);
+			}
+		}
+
+		items.forEach((item) => (item.ondragstart = dragstart));
+		items.forEach((item) => (item.ondragend = dragend));
+		container.ondragover = dragover;
+		//end drag and drop functionality
 	});
 	const options = [
 		{ unit: "Grams", short: "g" },
