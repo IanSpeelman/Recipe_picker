@@ -59,6 +59,15 @@ span.icon.is-small.is-right.destroy{
 	pointer-events: all;
 	cursor: pointer;
 }
+.control.has-icons-right .icon{
+	color: rgb(128,128,128);
+}
+.add-serving, .remove-serving {
+	color: rgb(128,128,128);
+}
+.add-serving:hover, .remove-serving:hover {
+	color: rgb(152, 152, 152);
+}
 @media (prefers-color-scheme: light) {
 	.listbox {
 		background-color: #00000020;
