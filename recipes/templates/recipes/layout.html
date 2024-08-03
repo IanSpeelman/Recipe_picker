@@ -28,15 +28,27 @@
         </div>
         <div class="navbar-menu" id="nav-items">
             <div class="navbar-end">
-                <a class="navbar-item" href="{% url 'index' %}">Index</a>
-                {% if user.is_authenticated %}
-                <a class="navbar-item" href="{% url 'newrecipe' %}">Create recipe</a>
-                <a class="navbar-item" href="{% url 'logout' %}">Logout ({{ user }})</a>
-                {% else %}
-                <a class="navbar-item" href="{% url 'login' %}">Login</a>
-                <a class="navbar-item" href="{% url 'register' %}">Register</a>
-                {% endif %}
+                <form action="{% url 'search' %}" method="get">
+                    <div class="field has-addons navbar-item" id="search">
+                        <div class="control">
+                            <input class="input is-small" type="text" placeholder="Find a Recipe" name="q">
+                        </div>
+                        <div class="control">
+                            <button class="button is-info is-small">
+                                Search
+                            </button>
+                        </div>
+                </form>
             </div>
+            <a class="navbar-item" href="{% url 'index' %}">Index</a>
+            {% if user.is_authenticated %}
+            <a class="navbar-item" href="{% url 'newrecipe' %}">Create recipe</a>
+            <a class="navbar-item" href="{% url 'logout' %}">Logout ({{ user }})</a>
+            {% else %}
+            <a class="navbar-item" href="{% url 'login' %}">Login</a>
+            <a class="navbar-item" href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </div>
 
         </div>
     </nav>

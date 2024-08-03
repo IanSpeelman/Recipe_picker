@@ -122,3 +122,16 @@ def recipe(request, recipe_id):
         })
     except:
         return HttpResponseRedirect(reverse("index"))
+    
+
+def search(request):
+    q = request.GET.get("q")
+    if len(q) == 0:
+        return HttpResponseRedirect(reverse("index"))
+    try:
+        recipes = Recipe.objects.filter(title__contains=q)
+        return render(request, "recipes/index.html", {
+            "recipes":recipes,
+        })
+    except:
+        return HttpResponseRedirect(reverse("index"))
