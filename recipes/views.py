@@ -88,13 +88,12 @@ def new_recipe(request):
                 recipe  = Recipe.objects.all().last()
                 # get every ingredient and instruction that is added to the recipe and store them in a list
                 i = 0
-                instructions = []
                 while bool(request.POST.get(f"instruction[{i}]")):
                     Instruction.objects.create(recipe=recipe, instruction_number=i+1, instruction=request.POST.get(f"instruction[{i}]"))
                     i += 1
                 i = 0
-                ingredients = []
                 while bool(request.POST.get(f"ingredient[{i}]")):
+                    request.POST.get(f"amount[{i}]")
                     Ingredient.objects.create(recipe=recipe, unit=request.POST.get(f"unit[{i}]"), 
                                             amount=request.POST.get(f"amount[{i}]"), ingredient=request.POST.get(f"ingredient[{i}]"))
                     i += 1

@@ -3,6 +3,7 @@
 Recipe
 {% endblock %}
 {% block body %}
+{% load static %}
 <div class="container">
     <div class="columns margin-horizontal margin-bottom">
         <div class="column center">
@@ -13,7 +14,7 @@ Recipe
             <p id="description">{{ recipe.description }}</p>
             <div class="columns margin-top listbox">
                 <div class="column">
-                    <p>servings: {{ recipe.servings }} people</p>
+                    <p>servings: <i class="fa-solid fa-circle-minus add-serving" id="add-serving"></i> <span id="servings">{{ recipe.servings }}</span> <i class="fa-solid fa-circle-plus remove-serving" id="remove-serving"></i> people</p>
                     <p>cuisine: {{ recipe.cuisine }}</p>
                     <p>category: {{ recipe.category }}</p>
                 </div>
@@ -29,7 +30,7 @@ Recipe
             <h2>ingredients: </h2>
             {% for ingredient in ingredients %}
             <div class="listbox">
-                <p>{{ ingredient.amount }}{{ ingredient.unit }} of {{ ingredient.ingredient }}</p>
+                <p><span class="amount">{{ ingredient.amount }}</span>{{ ingredient.unit }} of {{ ingredient.ingredient }}</p>
             </div>
             {% endfor%}
         </div>
@@ -43,6 +44,6 @@ Recipe
             {% endfor %}
         </div>
     </div>
+    <script src="{% static 'recipes/scripts/changeServings.js' %}"></script>
 </div>
-
 {% endblock %}
