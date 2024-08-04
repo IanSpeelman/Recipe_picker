@@ -80,6 +80,9 @@ div#nav-items.nav-menu > .navbar-end{
 .none{
 	display: none;
 }
+.ml{
+	margin-left: .5em;
+}
 @media (prefers-color-scheme: light) {
 	.listbox {
 		background-color: #00000020;
