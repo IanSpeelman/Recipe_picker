@@ -1,0 +1,281 @@
+[
+    {
+        "model": "recipes.instruction",
+        "pk": 1,
+        "fields": {
+            "recipe": 1,
+            "instruction_number": 1,
+            "instruction": "Cook spaghetti according to package instructions."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 2,
+        "fields": {
+            "recipe": 1,
+            "instruction_number": 2,
+            "instruction": "In a pan, cook pancetta until crispy."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 3,
+        "fields": {
+            "recipe": 1,
+            "instruction_number": 3,
+            "instruction": "Mix eggs and cheese in a bowl."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 4,
+        "fields": {
+            "recipe": 1,
+            "instruction_number": 4,
+            "instruction": "Combine pasta, pancetta, and egg mixture."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 5,
+        "fields": {
+            "recipe": 2,
+            "instruction_number": 1,
+            "instruction": "Grill chicken breasts and slice them."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 6,
+        "fields": {
+            "recipe": 2,
+            "instruction_number": 2,
+            "instruction": "Toss lettuce with Caesar dressing."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 7,
+        "fields": {
+            "recipe": 2,
+            "instruction_number": 3,
+            "instruction": "Top salad with grilled chicken."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 8,
+        "fields": {
+            "recipe": 3,
+            "instruction_number": 1,
+            "instruction": "Cook beef in a skillet until browned."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 9,
+        "fields": {
+            "recipe": 3,
+            "instruction_number": 2,
+            "instruction": "Add mushrooms and cook until soft."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 10,
+        "fields": {
+            "recipe": 3,
+            "instruction_number": 3,
+            "instruction": "Stir in cream and season with salt and pepper."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 11,
+        "fields": {
+            "recipe": 4,
+            "instruction_number": 1,
+            "instruction": "Heat oil in a pan over medium-high heat."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 12,
+        "fields": {
+            "recipe": 4,
+            "instruction_number": 2,
+            "instruction": "Add chopped vegetables and stir-fry until tender."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 13,
+        "fields": {
+            "recipe": 4,
+            "instruction_number": 3,
+            "instruction": "Add sauce and stir to combine."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 14,
+        "fields": {
+            "recipe": 5,
+            "instruction_number": 1,
+            "instruction": "Preheat oven to 475°F (245°C)."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 15,
+        "fields": {
+            "recipe": 5,
+            "instruction_number": 2,
+            "instruction": "Spread tomato sauce over pizza dough."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 16,
+        "fields": {
+            "recipe": 5,
+            "instruction_number": 3,
+            "instruction": "Top with mozzarella cheese and basil leaves."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 17,
+        "fields": {
+            "recipe": 6,
+            "instruction_number": 1,
+            "instruction": "Marinate chicken in yogurt and spices for at least 2 hours."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 18,
+        "fields": {
+            "recipe": 6,
+            "instruction_number": 2,
+            "instruction": "Grill or bake chicken until fully cooked."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 19,
+        "fields": {
+            "recipe": 6,
+            "instruction_number": 3,
+            "instruction": "Prepare the sauce with tomatoes, cream, and spices."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 20,
+        "fields": {
+            "recipe": 7,
+            "instruction_number": 1,
+            "instruction": "Sauté garlic in a pan with olive oil."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 21,
+        "fields": {
+            "recipe": 7,
+            "instruction_number": 2,
+            "instruction": "Add shrimp and cook until pink and opaque."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 22,
+        "fields": {
+            "recipe": 7,
+            "instruction_number": 3,
+            "instruction": "Stir in lemon juice and season with salt and pepper."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 23,
+        "fields": {
+            "recipe": 8,
+            "instruction_number": 1,
+            "instruction": "Preheat oven to 350°F (175°C)."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 24,
+        "fields": {
+            "recipe": 8,
+            "instruction_number": 2,
+            "instruction": "Cream together butter, sugar, and brown sugar."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 25,
+        "fields": {
+            "recipe": 8,
+            "instruction_number": 3,
+            "instruction": "Stir in eggs, vanilla, and chocolate chips."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 26,
+        "fields": {
+            "recipe": 9,
+            "instruction_number": 1,
+            "instruction": "Combine cucumbers, tomatoes, olives, and red onions in a bowl."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 27,
+        "fields": {
+            "recipe": 9,
+            "instruction_number": 2,
+            "instruction": "Add feta cheese and olives."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 28,
+        "fields": {
+            "recipe": 9,
+            "instruction_number": 3,
+            "instruction": "Drizzle with olive oil and lemon juice."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 29,
+        "fields": {
+            "recipe": 10,
+            "instruction_number": 1,
+            "instruction": "In a bowl, mix flour, sugar, baking powder, and salt."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 30,
+        "fields": {
+            "recipe": 10,
+            "instruction_number": 2,
+            "instruction": "In another bowl, whisk eggs, milk, and melted butter."
+        }
+    },
+    {
+        "model": "recipes.instruction",
+        "pk": 31,
+        "fields": {
+            "recipe": 10,
+            "instruction_number": 3,
+            "instruction": "Combine wet and dry ingredients, and cook pancakes on a hot griddle."
+        }
+    }
+]

@@ -25,7 +25,41 @@ new recipe
                 </div>
                 <div class="field">
                     <div class="label">Cuisine</div>
-                    <input autocomplete="off" class="input" type="text" name="cuisine" aria-label="cuisine" placeholder="cuisine" required">
+                    <input autocomplete="off" class="input" type="text" name="cuisine" aria-label="cuisine" placeholder="cuisine" list="cuisine" required">
+                    <datalist id="cuisine">
+                        <option value="american"></option>
+                        <option value="italian"></option>
+                        <option value="chinese"></option>
+                        <option value="indian"></option>
+                        <option value="mexican"></option>
+                        <option value="japanese"></option>
+                        <option value="french"></option>
+                        <option value="thai"></option>
+                        <option value="greek"></option>
+                        <option value="spanish"></option>
+                        <option value="mediterranean"></option>
+                        <option value="turkish"></option>
+                        <option value="vietnamese"></option>
+                        <option value="korean"></option>
+                        <option value="portuguese"></option>
+                        <option value="ethiopian"></option>
+                        <option value="armenian"></option>
+                        <option value="persian"></option>
+                        <option value="cuban"></option>
+                        <option value="nigerian"></option>
+                        <option value="sri-lankan"></option>
+                        <option value="southern"></option>
+                        <option value="indonesian"></option>
+                        <option value="malaysian"></option>
+                        <option value="swedish"></option>
+                        <option value="russian"></option>
+                        <option value="czech"></option>
+                        <option value="belgian"></option>
+                        <option value="australian"></option>
+                        <option value="lithuanian"></option>
+                        <option value="hungarian"></option>
+                        <option value="latin-american"></option>
+                    </datalist>
                 </div>
                 <div class="field">
                     <div class="label">Cooking time: (min)</div>
@@ -37,7 +71,21 @@ new recipe
                 </div>
                 <div class="field">
                     <div class="label">Category</div>
-                    <input autocomplete="off" class="input" type="text" name="category" aria-label="category" placeholder="category" require">
+                    <div class="select is-expanded wide">
+                        <select name="category" class="wide">
+                            <option value="" selected disabled> -- Please select a category -- </option>
+                            <option value="appetizers">Appetizers (Starters)</option>
+                            <option value="main-course">Main Course (Entrée)</option>
+                            <option value="side-dishes">Side Dishes</option>
+                            <option value="desserts">Desserts</option>
+                            <option value="beverages">Beverages</option>
+                            <option value="snacks">Snacks</option>
+                            <option value="breakfast">Breakfast</option>
+                            <option value="lunch">Lunch</option>
+                            <option value="dinner">Dinner (Supper)</option>
+                            <option value="brunch">Brunch</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="field">
                     <div class="label">Image url</div>
