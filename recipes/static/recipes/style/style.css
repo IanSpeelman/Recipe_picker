@@ -59,11 +59,6 @@ span.icon.is-small.is-right.destroy{
 	pointer-events: all;
 	cursor: pointer;
 }
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> main
 .control.has-icons-right .icon{
 	color: rgb(128,128,128);
 }
@@ -73,16 +68,15 @@ span.icon.is-small.is-right.destroy{
 .add-serving:hover, .remove-serving:hover {
 	color: rgb(152, 152, 152);
 }
-<<<<<<< HEAD
 div#nav-items.nav-menu > .navbar-end{
 	align-items: center;
 }
 #search{
 	height: 100%;
 }
->>>>>>> Stashed changes
-=======
->>>>>>> main
+.wide {
+	width: 100%;
+}
 @media (prefers-color-scheme: light) {
 	.listbox {
 		background-color: #00000020;

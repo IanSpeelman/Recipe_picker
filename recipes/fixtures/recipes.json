@@ -1,0 +1,152 @@
+[
+    {
+        "model": "recipes.recipe",
+        "pk": 1,
+        "fields": {
+            "creator": 14,
+            "title": "Classic Spaghetti Carbonara",
+            "description": "A classic Italian pasta dish made with eggs, cheese, pancetta, and pepper.",
+            "servings": 4,
+            "cuisine": "Italian",
+            "cooking_time": 20,
+            "preperation_time": 10,
+            "category": "Pasta",
+            "image_url": "https://arc-anglerfish-washpost-prod-washpost.s3.amazonaws.com/public/VZZJ5PUPPQI6ZDO5KIJWTCGSMM.jpg"
+        }
+    },
+    {
+        "model": "recipes.recipe",
+        "pk": 2,
+        "fields": {
+            "creator": 14,
+            "title": "Chicken Caesar Salad",
+            "description": "A fresh salad with grilled chicken, romaine lettuce, and Caesar dressing.",
+            "servings": 2,
+            "cuisine": "American",
+            "cooking_time": 15,
+            "preperation_time": 10,
+            "category": "Salad",
+            "image_url": "https://www.jessicagavin.com/wp-content/uploads/2022/06/chicken-caesar-salad-28-1200.jpg"
+        }
+    },
+    {
+        "model": "recipes.recipe",
+        "pk": 3,
+        "fields": {
+            "creator": 14,
+            "title": "Beef Stroganoff",
+            "description": "Tender strips of beef in a creamy mushroom sauce.",
+            "servings": 4,
+            "cuisine": "Russian",
+            "cooking_time": 30,
+            "preperation_time": 15,
+            "category": "Main Course",
+            "image_url": "https://cdn.apartmenttherapy.info/image/upload/f_jpg,q_auto:eco,c_fill,g_auto,w_1500,ar_4:3/k%2FPhoto%2FRecipes%2F2024-03-beef-stroganoff-190%2Fbeef-stroganoff-190-342_1"
+        }
+    },
+    {
+        "model": "recipes.recipe",
+        "pk": 4,
+        "fields": {
+            "creator": 14,
+            "title": "Vegetable Stir-Fry",
+            "description": "A quick and healthy stir-fry with mixed vegetables and a savory sauce.",
+            "servings": 4,
+            "cuisine": "Asian",
+            "cooking_time": 20,
+            "preperation_time": 10,
+            "category": "Vegetarian",
+            "image_url": "https://www.lecremedelacrumb.com/wp-content/uploads/2022/01/vegetable-stir-fry-10sm-7.jpg"
+        }
+    },
+    {
+        "model": "recipes.recipe",
+        "pk": 5,
+        "fields": {
+            "creator": 14,
+            "title": "Margherita Pizza",
+            "description": "A simple pizza with tomato, mozzarella, and basil.",
+            "servings": 2,
+            "cuisine": "Italian",
+            "cooking_time": 15,
+            "preperation_time": 10,
+            "category": "Pizza",
+            "image_url": "https://images.prismic.io/eataly-us/ed3fcec7-7994-426d-a5e4-a24be5a95afd_pizza-recipe-main.jpg"
+        }
+    },
+    {
+        "model": "recipes.recipe",
+        "pk": 6,
+        "fields": {
+            "creator": 14,
+            "title": "Chicken Tikka Masala",
+            "description": "Spicy and creamy chicken tikka masala with a side of rice.",
+            "servings": 4,
+            "cuisine": "Indian",
+            "cooking_time": 40,
+            "preperation_time": 20,
+            "category": "Main Course",
+            "image_url": "https://www.allrecipes.com/thmb/1ul-jdOz8H4b6BDrRcYOuNmJgt4=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/239867chef-johns-chicken-tikka-masala-ddmfs-3X4-0572-e02a25f8c7b745459a9106e9eb13de10.jpg"
+        }
+    },
+    {
+        "model": "recipes.recipe",
+        "pk": 7,
+        "fields": {
+            "creator": 14,
+            "title": "Lemon Garlic Shrimp",
+            "description": "Juicy shrimp cooked in a zesty lemon garlic sauce.",
+            "servings": 2,
+            "cuisine": "Mediterranean",
+            "cooking_time": 15,
+            "preperation_time": 10,
+            "category": "Seafood",
+            "image_url": "https://bakerbynature.com/wp-content/uploads/2019/04/LemonGarlicShrimpandAsparagus2-1-of-1.jpg"
+        }
+    },
+    {
+        "model": "recipes.recipe",
+        "pk": 8,
+        "fields": {
+            "creator": 14,
+            "title": "Chocolate Chip Cookies",
+            "description": "Classic cookies loaded with chocolate chips.",
+            "servings": 24,
+            "cuisine": "American",
+            "cooking_time": 10,
+            "preperation_time": 15,
+            "category": "Dessert",
+            "image_url": "https://beyondfrosting.com/wp-content/uploads/2019/03/Chewy-Chocolate-Chip-Cookies-139-2.jpg"
+        }
+    },
+    {
+        "model": "recipes.recipe",
+        "pk": 9,
+        "fields": {
+            "creator": 14,
+            "title": "Greek Salad",
+            "description": "A refreshing salad with cucumbers, tomatoes, olives, and feta cheese.",
+            "servings": 4,
+            "cuisine": "Greek",
+            "cooking_time": 10,
+            "preperation_time": 10,
+            "category": "Salad",
+            "image_url": "https://www.thechunkychef.com/wp-content/uploads/2021/07/Greek-Salad-Recipe-recipe-card-500x375.jpg"
+        }
+    },
+    {
+        "model": "recipes.recipe",
+        "pk": 10,
+        "fields": {
+            "creator": 14,
+            "title": "Pancakes",
+            "description": "Fluffy pancakes served with maple syrup.",
+            "servings": 4,
+            "cuisine": "American",
+            "cooking_time": 15,
+            "preperation_time": 10,
+            "category": "Breakfast",
+            "image_url": "https://www.wholesomeyum.com/wp-content/uploads/2017/03/wholesomeyum-Low-Carb-Keto-Pancakes-Recipe-21.jpg"
+        }
+    }
+]
