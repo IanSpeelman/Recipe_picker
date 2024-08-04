@@ -77,6 +77,9 @@ div#nav-items.nav-menu > .navbar-end{
 .wide {
 	width: 100%;
 }
+.none{
+	display: none;
+}
 @media (prefers-color-scheme: light) {
 	.listbox {
 		background-color: #00000020;
