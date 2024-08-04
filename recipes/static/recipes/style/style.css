@@ -77,6 +77,12 @@ div#nav-items.nav-menu > .navbar-end{
 .wide {
 	width: 100%;
 }
+.none{
+	display: none;
+}
+.ml{
+	margin-left: .5em;
+}
 @media (prefers-color-scheme: light) {
 	.listbox {
 		background-color: #00000020;
