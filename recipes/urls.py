@@ -8,5 +8,5 @@ urlpatterns = [
     path("logout", views.logout, name="logout"),
     path("recipe/new", views.new_recipe , name="newrecipe"),
     path("recipe/<int:recipe_id>", views.recipe , name="recipe"),
-    path("search", views.search, name="search")
+    path("search", views.search, name="search"),
 ]

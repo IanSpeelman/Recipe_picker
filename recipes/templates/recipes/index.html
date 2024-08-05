@@ -8,11 +8,12 @@ Index
     <div class="columns">
         <div class="column">
             <div class="listbox">
+                <button class="button is-success" id="clear-filter">Clear Filters!</button>
                 <div class="field">
                     <label class="label">Cuisines:</label>
                     <div class="control has-icons-right">
-                        <form action="" id="form">
-                            <input class="input" list="cuisine-list" type="text" placeholder="Cuisine" id="cuisine">
+                        <form action="" id="cuisine-form">
+                            <input class="input" autocapitalize="on" autocomplete="off" list="cuisine-list" type="text" placeholder="Cuisine" id="cuisine">
                         </form>
                         <span class="icon is-small is-right destroy">
                             <i class="fa-sharp fa-solid fa-plus"></i>
@@ -53,7 +54,7 @@ Index
                         </datalist>
                     </div>
                     <p class="help">Add cuisines to the filter list</p>
-                    <div class="tags are-small">
+                    <div class="tags are-small is-rounded" id="cuisine-tags">
                     </div>
                 </div>
                 <div class="checkboxes">
@@ -122,11 +123,11 @@ Index
         <div class="column is-three-quarters">
             <div class="list">
                 {% for recipe in recipes %}
-                <div class="list-item listbox recipe" data-category="{{recipe.category}}" data-cuisine="{{recipe.cuisine}}">
+                <div class="list-item listbox recipe" data-category="{{ recipe.category }}" data-cuisine="{{ recipe.cuisine }}" data-recipe="{{ recipe.id }}">
                     <a href="{% url 'recipe' recipe.id %}">
                         <div class="columns">
                             <div class="column">
-                                <img class="img" src="{{ recipe.image_url}}" alt="{{ recipe.title }}">
+                                <img class="img" src="{{ recipe.image_url }}" alt="{{ recipe.title }}">
                             </div>
                             <div class="column">
                                 <div class="title is-5">
