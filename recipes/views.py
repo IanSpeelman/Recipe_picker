@@ -5,13 +5,21 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
 import json
 
-from .models import Recipe, Ingredient, Instruction
+from .models import Recipe, Ingredient, Instruction, Favorites
 
 # Create your views here.
 def index(request):
     recipes = Recipe.objects.all()
+    if request.user.is_authenticated:
+        results = Favorites.objects.filter(user=request.user, recipe__in=recipes)
+        favorites = []
+        for result in results:
+            favorites.append(result.recipe)
+    else:
+        favorites = False
     return render(request, "recipes/index.html", {
         "recipes": recipes,
+        "favorites": favorites,
     })
 
 def register(request):
@@ -113,12 +121,17 @@ def recipe(request, recipe_id):
         return HttpResponseRedirect(reverse("index"))
     try:
         recipe = Recipe.objects.get(pk=recipe_id)
+        try:
+            favorite = Favorites.objects.get(user=request.user, recipe=recipe)
+        except:
+            favorite = False
         ingredients = Ingredient.objects.filter(recipe=recipe)
         instructions = Instruction.objects.filter(recipe=recipe)
         return render(request,"recipes/recipe.html", {
             "recipe": recipe,
             "instructions": instructions,
             "ingredients": ingredients,
+            "favorite":favorite,
         })
     except:
         return HttpResponseRedirect(reverse("index"))
@@ -136,3 +149,34 @@ def search(request):
     except:
         return HttpResponseRedirect(reverse("index"))
 
+def addfavorites(request, recipe_id):
+    if request.method == "POST":
+        return HttpResponse(status=405)
+    
+    if request.user.is_authenticated:
+        recipe = Recipe.objects.get(pk=recipe_id)
+        user = request.user
+        try:
+            Favorites.objects.get(user=user, recipe=recipe).delete()
+            return HttpResponse(json.dumps({"status": 200, "message": "favorites removed", "recipe": recipe.id}), status=200, content_type="application/json")
+        except:
+            Favorites.objects.create(user=user, recipe=recipe)
+            return HttpResponse(json.dumps({"status": 200, "message": "favorites added", "recipe": recipe.id}), status=200, content_type="application/json")
+    else:
+        return HttpResponse(json.dumps({"status": 401, "message": "Not logged in!"}), status=401, content_type="application/json")
+        
+def favorites(request):
+    if request.method == "POST":
+        return HttpResponseRedirect(reverse("favorites"))
+    
+    if request.user.is_authenticated:
+        results = Favorites.objects.filter(user=request.user)
+        recipes = []
+        for result in results:
+            recipes.append(result.recipe)
+        return render(request, "recipes/index.html", {
+            "recipes": recipes,
+            "favorites": recipes,
+        })
+    else:
+        return HttpResponseRedirect(reverse("login"))

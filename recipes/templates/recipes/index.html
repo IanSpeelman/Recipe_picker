@@ -10,7 +10,7 @@ Index
             <div class="listbox">
                 <button class="button is-danger colapse-btn mb">Show/Hide Filters</button>
                 <div id="" class="filters colapsed">
-                    <button class="button is-success" id="clear-filter">Clear Filters!</button>
+                    <button class="button is-success mb" id="clear-filter">Clear Filters!</button>
                     <div class="field">
                         <label class="label">Cuisines:</label>
                         <div class="control has-icons-right">
@@ -129,12 +129,23 @@ Index
                 <div class="list-item listbox recipe" data-category="{{ recipe.category }}" data-cuisine="{{ recipe.cuisine }}" data-recipe="{{ recipe.id }}">
                     <a href="{% url 'recipe' recipe.id %}">
                         <div class="columns">
-                            <div class="column">
+                            <div class="column img-column">
                                 <img class="img" src="{{ recipe.image_url }}" alt="{{ recipe.title }}">
                             </div>
-                            <div class="column">
-                                <div class="title is-5">
+                            <div class="column is-two-thirds relative">
+                                <div class="title is-5 recipe-title">
                                     <h2> {{ recipe.title }}</h2>
+                                    <span class="favorites" data-recipe="{{ recipe.id }}">
+                                        {% if user.is_authenticated %}
+                                        {% if recipe not in favorites %}
+                                        <i class="fa-regular fa-star favorites ml"></i>
+                                        <i class="fa-solid fa-star hidden favorites ml " style="color: #d7a700;"></i>
+                                        {% else %}
+                                        <i class="fa-regular fa-star hidden favorites ml "></i>
+                                        <i class="fa-solid fa-star favorites ml" style="color: #d7a700;"></i>
+                                        {% endif%}
+                                        {% endif%}
+                                    </span>
                                 </div>
                                 <div class="columns">
                                     <div class="column">
@@ -157,4 +168,5 @@ Index
     </div>
 </div>
 <script src="{% static 'recipes/scripts/filter.js' %}"></script>
+<script src="{% static 'recipes/scripts/addFavorites.js' %}"></script>
 {% endblock %}

@@ -1,6 +1,6 @@
-:root {
+/* :root {
 	--bulma-block-spacing: 0px;
-}
+} */
 .field input::placeholder {
 	color: rgb(128, 128, 128);
 	opacity: 1;
@@ -98,6 +98,20 @@ div#nav-items.nav-menu > .navbar-end{
 	display: none;
 	width: 100%;
 }
+button{
+	width:100%
+}
+.recipe > a{
+	color: var(--bulma-content-heading-color);
+}
+i.hidden{
+	display: none;
+}
+
+.recipe-title{
+	display: flex;
+	justify-content: space-between;
+}
 @media (prefers-color-scheme: light) {
 	.listbox {
 		background-color: #00000020;
@@ -124,7 +138,18 @@ div#nav-items.nav-menu > .navbar-end{
 	.colapsed{
 		height: 0;
 	}
-	button{
-		width:100%
+	.img-column{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.column{
+		width: 95%;
+		margin: 0 auto;
+	}
+	.recipe-title{
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
 	}
 }

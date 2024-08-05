@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		{ unit: "Tablespoons", short: "tbsp" },
 	];
 	newIngredient.addEventListener("click", (e) => {
+		e.preventDefault()
 		let ingredientModel = document.querySelector(".ingredient-model");
 		let clone = ingredientModel.cloneNode(true);
 		clone.children[0].children[0].children[0].setAttribute("name", `unit[${ingredients}]`);

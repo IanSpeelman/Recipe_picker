@@ -5,12 +5,22 @@ Recipe
 {% block body %}
 {% load static %}
 <div class="container">
-    <div class="columns margin-horizontal margin-bottom">
+    <div class="columns margin-horizontal margin-bottom recipe-view" data-recipe="{{ recipe.id }}">
         <div class="column center">
             <img class="img" src="{{ recipe.image_url }}" alt="{{ recipe.title }}">
         </div>
         <div class="column">
-            <h1>{{ recipe.title }}</h1>
+            <div class="recipe-title">
+                <h1 class="title is-3">{{ recipe.title }}</h1>
+                {% if favorite %}
+                <i class="fa-regular fa-star hidden favorites ml"></i>
+                <i class="fa-solid fa-star favorites ml " style="color: #d7a700;"></i>
+                {% else %}
+                <i class="fa-regular fa-star favorites ml"></i>
+                <i class="fa-solid fa-star hidden favorites ml " style="color: #d7a700;"></i>
+                {% endif %}
+
+            </div>
             <p id="description">{{ recipe.description }}</p>
             <div class="columns margin-top listbox">
                 <div class="column">
@@ -45,5 +55,7 @@ Recipe
         </div>
     </div>
     <script src="{% static 'recipes/scripts/changeServings.js' %}"></script>
+    <script src="{% static 'recipes/scripts/addFavorites.js' %}"></script>
+
 </div>
 {% endblock %}

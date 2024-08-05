@@ -2,7 +2,7 @@ from django.test import  TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-from ..models import Recipe, Ingredient, Instruction
+from ..models import Recipe, Ingredient, Instruction, Favorites
 
 import unittest
 
@@ -218,3 +218,57 @@ class testRecipeShow(TestCase):
         self.assertEqual(response.status_code, 302)
         self.assertTemplateUsed("recipes/index.html")
 
+class testFavorites(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="testuser", password="password")
+        self.client.login(username="testuser", password="password")
+        recipe = Recipe(creator=self.user, title="test recipe", description="this is a test recipe", servings=4, cuisine="mexican", cooking_time=15,
+               preperation_time=15, category="dinner", image_url="somerandomlink")
+        recipe.save()
+        Ingredient.objects.create(recipe=recipe, unit="g", amount=250, ingredient="minced meat").save()
+        Instruction.objects.create(recipe=recipe, instruction_number=1, instruction="cook the minced meat as described on the package").save()
+        Favorites.objects.create(user=self.user, recipe=recipe)
+
+    def test_favorites_GET(self):
+        response = self.client.get(reverse("favorites"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed("recipes/index.html")
+    
+    def test_favorites_GET_not_logged_in(self):
+        self.client.logout()
+        response = self.client.get(reverse("favorites"))
+        self.assertEqual(response.status_code, 302)
+        self.assertTemplateUsed("recipes/login.html")
+
+    def test_favorites_POST(self):
+        response = self.client.post(reverse("favorites"))
+        self.assertEqual(response.status_code, 302)
+        self.assertTemplateUsed("recipes/favorites.html")
+class testAddFavorites(TestCase):
+    def setUp(self):
+        self.user = User.objects.create_user(username="testuser", password="password")
+        self.client.login(username="testuser", password="password")
+        recipe = Recipe(creator=self.user, title="test recipe", description="this is a test recipe", servings=4, cuisine="mexican", cooking_time=15,
+               preperation_time=15, category="dinner", image_url="somerandomlink")
+        recipe.save()
+        Ingredient.objects.create(recipe=recipe, unit="g", amount=250, ingredient="minced meat").save()
+        Instruction.objects.create(recipe=recipe, instruction_number=1, instruction="cook the minced meat as described on the package").save()
+
+    def test_add_favorites_GET(self):
+        response = self.client.get(reverse("addfavorites", kwargs={"recipe_id": 1}))
+        count = Favorites.objects.all().count()
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(count, 1)
+
+    def test_add_favorites_GET_not_logged_in(self):
+        self.client.logout()
+        response = self.client.get(reverse("addfavorites", kwargs={"recipe_id": 1}))
+        count = Favorites.objects.all().count()
+        self.assertEqual(response.status_code, 401)
+        self.assertEqual(count, 0)
+
+    def test_add_favorites_POST(self):
+        response = self.client.post(reverse("addfavorites", kwargs={"recipe_id": 1}))
+        count = Favorites.objects.all().count()
+        self.assertEqual(response.status_code, 405)
+        self.assertEqual(count, 0)
