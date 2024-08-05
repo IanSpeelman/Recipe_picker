@@ -135,3 +135,4 @@ def search(request):
         })
     except:
         return HttpResponseRedirect(reverse("index"))
+

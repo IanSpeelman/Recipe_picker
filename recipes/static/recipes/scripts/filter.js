@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const cuisine = document.querySelector("#cuisine")
     const cuisine_tags = document.querySelector("#cuisine-tags")
     const clear_filter = document.querySelector("#clear-filter")
+    const colapse_btn = document.querySelector(".colapse-btn")
+    const filters = document.querySelector(".filters")
     
     let categories = []
     let cuisines = []
@@ -83,6 +85,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     })
     
+
+    colapse_btn.addEventListener("click", e => {
+        console.log("click") 
+        filters.classList.toggle("colapsed")
+    })
+
 
 
     
