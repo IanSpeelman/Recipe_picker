@@ -81,7 +81,7 @@ div#nav-items.nav-menu > .navbar-end{
 	display: none;
 }
 .ml{
-	margin-left: .5em;
+	padding: .5em;
 }
 @media (prefers-color-scheme: light) {
 	.listbox {

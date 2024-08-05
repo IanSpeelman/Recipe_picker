@@ -2,9 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // get required elements
     const recipes = document.querySelectorAll(".recipe")
     const checkbox = document.querySelectorAll("input[type=checkbox]")
-    const form = document.querySelector("#form")
+    const cuisine_form = document.querySelector("#cuisine-form")
     const cuisine = document.querySelector("#cuisine")
-    const tags = document.querySelector(".tags")
+    const cuisine_tags = document.querySelector("#cuisine-tags")
+    const clear_filter = document.querySelector("#clear-filter")
+    
     let categories = []
     let cuisines = []
     
@@ -22,22 +24,22 @@ document.addEventListener("DOMContentLoaded", () => {
     });
     
     // check for form inputs to add cuisine tag
-    form.addEventListener("submit", e => {
+    cuisine_form.addEventListener("submit", e => {
         e.preventDefault()
         const tag = document.createElement("span")
         const i = document.createElement("i")
-        tag.classList.add("tag")
+        tag.classList.add("tag", "is-white", "is-rounded")
         i.classList.add("fa-sharp", "fa-solid", "fa-xmark", "ml", "cuisine-remove")
-        tag.innerText = cuisine.value
-        cuisines.push(cuisine.value)
+        tag.innerText = cuisine.value.charAt(0).toUpperCase() + cuisine.value.slice(1);
+        cuisines.push(cuisine.value.charAt(0).toUpperCase() + cuisine.value.slice(1))
         tag.append(i)
-        tags.append(tag)
+        cuisine_tags.append(tag)
         cuisine.value = ""
         filterRecipes()
     })
     
     //check if the user tries to remove a cuisine tag
-    tags.addEventListener("click", e => {
+    cuisine_tags.addEventListener("click", e => {
         if(e.target.matches(".cuisine-remove")){
             cuisines.splice(cuisines.indexOf(e.target.parentElement.innerText),1)
             e.target.parentElement.remove()
@@ -46,9 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
     
     //filter based on tags or checkboxes
-function filterRecipes() {
-    console.log("categories", categories)
-    console.log("cuisines", cuisines)
+    function filterRecipes() {
         for (recipe of recipes){
             recipe.classList.remove("none")
         }
@@ -70,11 +70,23 @@ function filterRecipes() {
         }
     }
 
+    clear_filter.addEventListener("click", e => {
+        categories = []
+        cuisines = []
+        filterRecipes()
+        while (cuisine_tags.children.length > 0) {
+            cuisine_tags.children[0].remove()
+        }
+        for (box of checkbox) {
+            box.checked = false
+        }
+
+    })
     
 
 
-
-
-
-
+    
+    
+    
+    
 })
