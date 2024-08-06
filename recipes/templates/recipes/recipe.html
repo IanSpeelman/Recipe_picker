@@ -49,13 +49,16 @@ Recipe
             <h2>ingredients: </h2>
             {% for ingredient in ingredients %}
             <div class="listbox">
-                <div class="ingredient">{{ ingredient.amount }}
-                    {% if ingredient.unit == "units" %}
-                    {{ ingredient.ingredient }}
-                    {% else %}
-                    {{ ingredient.unit }} of {{ ingredient.ingredient }}
-                    {% endif %}
-                    {% if not ingredient.unit == "units" %}
+                <div class="ingredient">
+                    <div>
+                        <span class="amount">{{ ingredient.amount }}</span>
+                        {% if ingredient.unit == "units" %}
+                        {{ ingredient.ingredient }}
+                        {% else %}
+                        {{ ingredient.unit }} of {{ ingredient.ingredient }}
+                        {% endif %}
+                        {% if not ingredient.unit == "units" %}
+                    </div>
                     <div>
 
                         <i class="fa-solid fa-circle-info tooltip-container">
