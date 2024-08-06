@@ -3,7 +3,9 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login as auth_login, logout as auth_logout
+import subprocess
 import json
+import time
 
 from .models import Recipe, Ingredient, Instruction, Favorites
 
@@ -80,6 +82,19 @@ def new_recipe(request):
     if request.user.is_authenticated:
 
         if request.method == "POST":
+
+            convert = {
+                "grams": 1,
+                "oz": round(28.35),
+                "lb": round(453.59),
+                "st": round(6350),
+                "milliliters": 1,
+                "cup": round(240),
+                "floz": round(30),
+                "tsp": round(5),
+                "tbs": round(15),
+                "units": 1,
+            }
             # get all information to be stored
             title = request.POST.get("title")
             description = request.POST.get("description")
@@ -102,9 +117,18 @@ def new_recipe(request):
                     i += 1
                 i = 0
                 while bool(request.POST.get(f"ingredient[{i}]")):
-                    request.POST.get(f"amount[{i}]")
-                    Ingredient.objects.create(recipe=recipe, unit=request.POST.get(f"unit[{i}]"), 
-                                            amount=request.POST.get(f"amount[{i}]"), ingredient=request.POST.get(f"ingredient[{i}]"))
+                    if request.POST.get(f"unit[{i}]") in ["grams", "oz", "lb", "st"]:
+                        unit = "grams"
+                        print("unit is a weight unit")
+                    elif request.POST.get(f"unit[{i}]") in ["milliliters", "cup", "floz", "tsp", "tbs"]:
+                        unit = "milliliters"
+                        print("unit is a volume unit")
+                    else:
+                        unit = "units"
+                        print("unit is a units unit")
+                    amount = int(request.POST.get(f"amount[{i}]")) * convert[request.POST.get(f"unit[{i}]")]
+                    Ingredient.objects.create(recipe=recipe, unit=unit, 
+                                            amount=amount, ingredient=request.POST.get(f"ingredient[{i}]"))
                     i += 1
 
                 return HttpResponseRedirect(reverse("recipe", kwargs={"recipe_id": recipe.id}))
@@ -180,3 +204,132 @@ def favorites(request):
         })
     else:
         return HttpResponseRedirect(reverse("login"))
+    
+
+def editRecipe(request, recipe_id):
+    recipe = Recipe.objects.get(pk=recipe_id)
+    if request.user == recipe.creator:
+
+        if request.method == "POST":
+            print("changes should be commited now")
+
+            convert = {
+                "grams": 1,
+                "oz": round(28.35),
+                "lb": round(453.59),
+                "st": round(6350),
+                "milliliters": 1,
+                "cup": round(240),
+                "floz": round(30),
+                "tsp": round(5),
+                "tbs": round(15),
+                "units": 1,
+            }
+            title = request.POST.get("title")
+            description = request.POST.get("description")
+            servings = request.POST.get("servings")
+            cuisine = request.POST.get("cuisine")
+            cooking_time = request.POST.get("cooking-time")
+            preperation_time = request.POST.get("preperation-time")
+            category = request.POST.get("category")
+            image_url = request.POST.get("image-url")
+            if all(v is not None for v in [title,description,servings,cuisine,cooking_time,
+                                           preperation_time,category,image_url]):
+                
+                recipe.title=title
+                recipe.description=description
+                recipe.servings=servings
+                recipe.cuisine=cuisine
+                recipe.cooking_time=cooking_time
+                recipe.preperation_time=preperation_time
+                recipe.category=category
+                recipe.image_url=image_url
+                recipe.save()
+                # get every ingredient and instruction that is added to the recipe and store them in a list
+                i = 0
+                instructions = Instruction.objects.filter(recipe=recipe).order_by("instruction_number")
+                while bool(request.POST.get(f"instruction[{i}]")):
+                    try:
+                        instruction = instructions[i]
+                        instruction.recipe=recipe
+                        instruction.instruction_number=i+1
+                        instruction.instruction=request.POST.get(f"instruction[{i}]")
+                        instruction.save()
+                    except:
+                        Instruction.objects.create(recipe=recipe, instruction_number=i+1, instruction=request.POST.get(f"instruction[{i}]"))
+                    i += 1
+                if len(instructions) > i:
+                    for c in range(i, len(instructions)):
+                        print(instruction[c])
+                        instructions[c].delete()
+                i = 0
+                ingredients = Ingredient.objects.filter(recipe=recipe)
+                while bool(request.POST.get(f"ingredient[{i}]")):
+                    if request.POST.get(f"unit[{i}]") in ["grams", "oz", "lb", "st"]:
+                        unit = "grams"
+                        print("unit is a weight unit")
+                    elif request.POST.get(f"unit[{i}]") in ["milliliters", "cup", "floz", "tsp", "tbs"]:
+                        unit = "milliliters"
+                        print("unit is a volume unit")
+                    else:
+                        unit = "units"
+                        print("unit is a units unit")
+                    amount = int(request.POST.get(f"amount[{i}]")) * convert[request.POST.get(f"unit[{i}]")]
+
+                    try:
+                        ingredient = ingredients[i]
+                        ingredient.recipe=recipe
+                        ingredient.unit=unit
+                        ingredient.amount=amount
+                        ingredient.ingredient=request.POST.get(f"ingredient[{i}]")
+                        ingredient.save()
+                    except:
+                        Ingredient.objects.create(recipe=recipe, unit=unit, 
+                                            amount=amount, ingredient=request.POST.get(f"ingredient[{i}]"))
+                    i += 1
+                    if len(ingredients) > i:
+                        for c in range(i, len(ingredients)):
+                            print(ingredients[c])
+                            ingredients[c].delete()
+
+
+
+
+
+
+
+            return HttpResponseRedirect(reverse("recipe", kwargs={"recipe_id": recipe_id}))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        ingredients = Ingredient.objects.filter(recipe=recipe)
+        instructions = Instruction.objects.filter(recipe=recipe)
+        return render(request, "recipes/new_recipe.html", {
+            "action": "edit",
+            "recipe": recipe,
+            "ingredients": ingredients,
+            "instructions": instructions
+        })
+    else:
+        return HttpResponseRedirect(reverse("index"))
+
+def loadfixtures(request):
+    subprocess.Popen('python manage.py loaddata recipes/fixtures/recipes.json', shell=True)
+    time.sleep(1)
+    subprocess.Popen('python manage.py loaddata recipes/fixtures/ingredients.json', shell=True)
+    time.sleep(1)
+    subprocess.Popen('python manage.py loaddata recipes/fixtures/instructions.json', shell=True)
+    return HttpResponseRedirect(reverse("index"))

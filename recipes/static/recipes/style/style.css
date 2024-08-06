@@ -107,10 +107,38 @@ button{
 i.hidden{
 	display: none;
 }
-
+.ingredient{
+	display: flex;
+	justify-content: space-between;
+}
 .recipe-title{
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
+}
+.tooltip-container{
+	position: relative;
+}
+.ingredient > .tooltip-container{
+	display: block;
+	height: 100%;
+	aspect-ratio: 1/1;
+}
+.tooltip{
+	min-width: 22em;
+	padding: 1em;
+	display: none;
+	border-radius: 1em;
+	position: absolute;
+	left: 30px;
+	top: -15px;
+	color: inherit;
+	font-size: .8em;
+	font-family: var(--bulma-body-family);
+	font-weight: normal;
+}
+.tooltip-container:hover .tooltip{
+	display: block;
 }
 @media (prefers-color-scheme: light) {
 	.listbox {
@@ -147,9 +175,18 @@ i.hidden{
 		width: 95%;
 		margin: 0 auto;
 	}
+	.no-pb{
+		padding-bottom: 0;
+	}
 	.recipe-title{
 		width: 100%;
 		display: flex;
 		justify-content: space-between;
+	}
+	.tooltip{
+		position: fixed;
+		top: 100px;
+		width: 90%;
+		left: 5%;
 	}
 }

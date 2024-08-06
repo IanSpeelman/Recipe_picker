@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+	setDragAndDrop()
+	setIngredientNumbering()
+	setInstructionNumbering()
 	let dragAndDrop = document.querySelectorAll(".drag-and-drop");
 	const newIngredient = document.querySelector("#new-ingredient");
 	const newInstruction = document.querySelector("#new-instruction");
@@ -17,10 +20,17 @@ document.addEventListener("DOMContentLoaded", () => {
 		clone.children[0].children[0].value = "";
 		instructionList.append(clone);
 		instructions++;
-
+		
+		setDragAndDrop()
+		destroyListeners();
+		setInstructionNumbering()
+		
+	});
+	
+	function setDragAndDrop() {
 		let items = document.querySelectorAll(".drag-and-drop");
 		let container = document.querySelector("#instruction-list");
-
+		
 		function dragstart(e) {
 			e.target.classList.add("dragging");
 		}
@@ -28,16 +38,11 @@ document.addEventListener("DOMContentLoaded", () => {
 			e.target.classList.remove("dragging");
 			let items = document.querySelector("#instruction-list").children;
 			items = [...items];
-
-			let c = 0;
-			for (item of items) {
-				item.children[0].children[0].setAttribute(
-					"name",
-					`instruction[${c}]`,
-				);
-				c++;
-			}
+			setInstructionNumbering()
+			
 		}
+		setInstructionNumbering()
+		
 		function dragover(e) {
 			e.preventDefault();
 			let dragging = document.querySelector(".dragging");
@@ -62,12 +67,11 @@ document.addEventListener("DOMContentLoaded", () => {
 				container.append(dragging);
 			}
 		}
-
+		
 		items.forEach((item) => (item.ondragstart = dragstart));
 		items.forEach((item) => (item.ondragend = dragend));
 		container.ondragover = dragover;
-		destroyListeners();
-	});
+	}
 	const options = [
 		{ unit: "Grams", short: "g" },
 		{ unit: "Kilograms", short: "kg" },
@@ -81,14 +85,11 @@ document.addEventListener("DOMContentLoaded", () => {
 		e.preventDefault()
 		let ingredientModel = document.querySelector(".ingredient-model");
 		let clone = ingredientModel.cloneNode(true);
-		clone.children[0].children[0].children[0].setAttribute("name", `unit[${ingredients}]`);
 		clone.children[1].children[0].value = "";
-		clone.children[1].children[0].setAttribute("name", `amount[${ingredients}]`);
 		clone.children[2].children[0].value = "";
-		clone.children[2].children[0].setAttribute("name", `ingredient[${ingredients}]`);
-
+		
 		ingredientList.append(clone);
-		ingredients++;
+		setIngredientNumbering()
 		destroyListeners();
 	});
 });
@@ -107,10 +108,7 @@ function destroyListeners() {
 					let target = e.target.parentElement.parentElement
 					target.remove();
 				}				let c = 0;
-				[...document.querySelectorAll(".instruction-model")].forEach(element => {
-					element.children[0].children[0].setAttribute("name", `instruction[${c}]`)
-					c++
-				});
+				
 			} else if (target.id !== "ingredient-model" && document.querySelectorAll(".ingredient-model").length > 1 ) {
 				if(e.target.tagName == "I"){
 					let target = e.target.parentElement.parentElement.parentElement 
@@ -120,15 +118,32 @@ function destroyListeners() {
 					let target = e.target.parentElement.parentElement
 					target.remove();
 				}
-				let c = 0;
-				[...document.querySelectorAll(".ingredient-model")].forEach(element => {
-					element.children[0].children[0].children[0].setAttribute("name", `unit[${c}]`)
-					element.children[1].children[0].setAttribute("name", `amount[${c}]`)
-					element.children[2].children[0].setAttribute("name", `ingredient[${c}]`)
-					c++
-				});
+				
 			}
+			setIngredientNumbering()
+			setInstructionNumbering()
 		};
+	}
+}
+function setIngredientNumbering(){
+	const items = document.querySelectorAll(".ingredient-group")
+	let c = 0
+	for (item of items){
+		item.children[0].children[0].children[0].setAttribute("name", `unit[${c}]`)
+		item.children[1].children[0].setAttribute("name", `amount[${c}]`)
+		item.children[2].children[0].setAttribute("name", `ingredient[${c}]`)
+		c++
+	}
+}
+function setInstructionNumbering(){
+	let items = document.querySelectorAll(".drag-and-drop");
+	let c = 0;
+	for (item of items) {
+		item.children[0].children[0].setAttribute(
+			"name",
+			`instruction[${c}]`,
+		);
+		c++;
 	}
 }
 destroyListeners();
