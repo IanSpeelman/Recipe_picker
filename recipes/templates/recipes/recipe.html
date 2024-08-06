@@ -12,19 +12,28 @@ Recipe
         <div class="column">
             <div class="recipe-title">
                 <h1 class="title is-3">{{ recipe.title }}</h1>
-                {% if favorite %}
-                <i class="fa-regular fa-star hidden favorites ml"></i>
-                <i class="fa-solid fa-star favorites ml " style="color: #d7a700;"></i>
-                {% else %}
-                <i class="fa-regular fa-star favorites ml"></i>
-                <i class="fa-solid fa-star hidden favorites ml " style="color: #d7a700;"></i>
-                {% endif %}
+                <div>
+                    {% if favorite %}
+                    <i class="fa-regular fa-star hidden favorites ml"></i>
+                    <i class="fa-solid fa-star favorites ml " style="color: #d7a700;"></i>
+                    {% else %}
+                    <i class="fa-regular fa-star favorites ml"></i>
+                    <i class="fa-solid fa-star hidden favorites ml " style="color: #d7a700;"></i>
+                    {% endif %}
+                    {% if recipe.creator == user %}
+                    <a href="{% url 'editrecipe' recipe.id %}"><i class="fa-solid fa-pen-to-square"></i></a>
+                    {% endif %}
+                </div>
 
             </div>
             <p id="description">{{ recipe.description }}</p>
             <div class="columns margin-top listbox">
                 <div class="column">
+                    {% if recipe.servings == 1 %}
+                    <p>servings: <i class="fa-solid fa-circle-minus add-serving" id="add-serving"></i> <span id="servings">{{ recipe.servings }}</span> <i class="fa-solid fa-circle-plus remove-serving" id="remove-serving"></i> person</p>
+                    {% else %}
                     <p>servings: <i class="fa-solid fa-circle-minus add-serving" id="add-serving"></i> <span id="servings">{{ recipe.servings }}</span> <i class="fa-solid fa-circle-plus remove-serving" id="remove-serving"></i> people</p>
+                    {% endif%}
                     <p>cuisine: {{ recipe.cuisine }}</p>
                     <p>category: {{ recipe.category }}</p>
                 </div>
@@ -40,7 +49,34 @@ Recipe
             <h2>ingredients: </h2>
             {% for ingredient in ingredients %}
             <div class="listbox">
-                <p><span class="amount">{{ ingredient.amount }}</span>{{ ingredient.unit }} of {{ ingredient.ingredient }}</p>
+                <div class="ingredient">{{ ingredient.amount }}
+                    {% if ingredient.unit == "units" %}
+                    {{ ingredient.ingredient }}
+                    {% else %}
+                    {{ ingredient.unit }} of {{ ingredient.ingredient }}
+                    {% endif %}
+                    {% if not ingredient.unit == "units" %}
+                    <div>
+
+                        <i class="fa-solid fa-circle-info tooltip-container">
+                            <div class="message tooltip">
+                                <div class="message-body">
+                                    {% if ingredient.unit == "grams" %}
+                                    <p>{{ ingredient.gramToOunce}}</p>
+                                    <p>{{ ingredient.gramToPound}}</p>
+                                    <p>{{ ingredient.gramToStone}}</p>
+                                    {% elif ingredient.unit == "milliliters" %}
+                                    <p>{{ ingredient.milliliterToFluidOunce }}</p>
+                                    <p>{{ ingredient.milliliterToCups }}</p>
+                                    <p>{{ ingredient.milliliterToTableSpoon }}</p>
+                                    <p>{{ ingredient.milliliterToTeaSpoon }}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </i>
+                    </div>
+                    {% endif %}
+                </div>
             </div>
             {% endfor%}
         </div>

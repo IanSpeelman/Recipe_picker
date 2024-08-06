@@ -8,9 +8,9 @@ Index
     <div class="columns">
         <div class="column">
             <div class="listbox">
-                <button class="button is-danger colapse-btn mb">Show/Hide Filters</button>
+                <button class="button is-info colapse-btn mb">Show/Hide Filters</button>
                 <div id="" class="filters colapsed">
-                    <button class="button is-success mb" id="clear-filter">Clear Filters!</button>
+                    <button class="button is-info mb" id="clear-filter">Clear Filters</button>
                     <div class="field">
                         <label class="label">Cuisines:</label>
                         <div class="control has-icons-right">
@@ -148,14 +148,18 @@ Index
                                     </span>
                                 </div>
                                 <div class="columns">
-                                    <div class="column">
-                                        <p>servings: {{ recipe.servings }}</p>
-                                        <p>cooking time: {{ recipe.cooking_time }}</p>
-                                        <p>preperation time: {{ recipe.preperation_time }}</p>
+                                    <div class="column no-pb">
+                                        {% if recipe.servings == 1 %}
+                                        <p class="listbox">Servings: {{ recipe.servings }} person</p>
+                                        {% else %}
+                                        <p class="listbox">Servings: {{ recipe.servings }} people</p>
+                                        {% endif %}
+                                        <p class="listbox">Cooking time: {{ recipe.cooking_time }} minutes</p>
+                                        <p class="listbox">Preperation time: {{ recipe.preperation_time }} minutes</p>
                                     </div>
                                     <div class="column">
-                                        <p>category: {{ recipe.category }}</p>
-                                        <p>cuisine: {{ recipe.cuisine }}</p>
+                                        <p class="listbox">Category: {{ recipe.category }}</p>
+                                        <p class="listbox">Cuisine: {{ recipe.cuisine }}</p>
                                     </div>
                                 </div>
                             </div>

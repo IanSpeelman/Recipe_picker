@@ -169,7 +169,7 @@ class testNewRecipe(TestCase):
             "preperation-time": "265",
             "category": "Antigua and Barbuda",
             "image-url":"Doloremque deserunt recusandae repellat laborum non culpa.",
-            "unit[0]": "g",
+            "unit[0]": "grams",
             "amount[0]": "651",
             "ingredient[0]":	"Numquam temporibus corporis.",
             "instruction[0]": "Recusandae ab hic deserunt reiciendis tenetur ab.",

@@ -26,6 +26,29 @@ class Ingredient(models.Model):
     amount = models.IntegerField()
     ingredient = models.CharField(max_length=100)
 
+    def gramToOunce(self):
+        return f"{self.amount}g is equal to {round(self.amount * 0.0353, 2)}oz (Ounce)"
+
+    def gramToPound(self):
+        return f"{self.amount}g is equal to {round(self.amount * 0.0022, 2)}lb (Pound)"
+
+    def gramToStone(self):
+        return f"{self.amount}g is equal to {round(self.amount * 0.000157, 2)}st (Stone)"
+
+    def milliliterToFluidOunce(self):
+        return f"{self.amount}ml is equal to {round(self.amount * 0.0338, 2)}fl oz (Fluid ounce)"
+
+    def milliliterToCups(self):
+        return f"{self.amount}ml is equal to {round(self.amount * 0.0042, 2)}cups"
+
+    def milliliterToTableSpoon(self):
+        return f"{self.amount}ml is equal to {round(self.amount * 0.06762, 2)}tbs (Tablespoon)"
+
+    def milliliterToTeaSpoon(self):
+        return f"{self.amount}ml is equal to {round(self.amount * 0.2028, 2)}tsp (Teaspoon)"
+
+    
+
 class Favorites(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)

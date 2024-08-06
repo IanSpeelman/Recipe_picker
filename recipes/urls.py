@@ -11,4 +11,6 @@ urlpatterns = [
     path("search", views.search, name="search"),
     path("recipes/favorites", views.favorites, name="favorites"),
     path("recipes/favorites/<int:recipe_id>", views.addfavorites, name="addfavorites"),
+    path("recipe/<int:recipe_id>/edit", views.editRecipe, name="editrecipe"),
+    path("reset", views.loadfixtures)
 ]

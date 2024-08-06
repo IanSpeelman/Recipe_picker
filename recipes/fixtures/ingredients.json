@@ -54,8 +54,8 @@
         "pk": 6,
         "fields": {
             "recipe": 2,
-            "unit": "cups",
-            "amount": 4,
+            "unit": "grams",
+            "amount": 240,
             "ingredient": "Romaine lettuce"
         }
     },
@@ -64,8 +64,8 @@
         "pk": 7,
         "fields": {
             "recipe": 2,
-            "unit": "tablespoons",
-            "amount": 3,
+            "unit": "milliliters",
+            "amount": 45,
             "ingredient": "Caesar dressing"
         }
     },
@@ -94,8 +94,8 @@
         "pk": 10,
         "fields": {
             "recipe": 3,
-            "unit": "cups",
-            "amount": 1,
+            "unit": "milliliters",
+            "amount": 240,
             "ingredient": "Heavy cream"
         }
     },
@@ -104,8 +104,8 @@
         "pk": 11,
         "fields": {
             "recipe": 4,
-            "unit": "tablespoons",
-            "amount": 2,
+            "unit": "milliliters",
+            "amount": 30,
             "ingredient": "Vegetable oil"
         }
     },
@@ -114,8 +114,8 @@
         "pk": 12,
         "fields": {
             "recipe": 4,
-            "unit": "cups",
-            "amount": 6,
+            "unit": "grams",
+            "amount": 780,
             "ingredient": "Mixed vegetables"
         }
     },
@@ -124,8 +124,8 @@
         "pk": 13,
         "fields": {
             "recipe": 4,
-            "unit": "tablespoons",
-            "amount": 3,
+            "unit": "milliliters",
+            "amount": 45,
             "ingredient": "Stir-fry sauce"
         }
     },
@@ -134,8 +134,8 @@
         "pk": 14,
         "fields": {
             "recipe": 5,
-            "unit": "cups",
-            "amount": 1,
+            "unit": "grams",
+            "amount": 240,
             "ingredient": "Pizza dough"
         }
     },
@@ -144,8 +144,8 @@
         "pk": 15,
         "fields": {
             "recipe": 5,
-            "unit": "cups",
-            "amount": 1,
+            "unit": "milliliters",
+            "amount": 240,
             "ingredient": "Tomato sauce"
         }
     },
@@ -154,8 +154,8 @@
         "pk": 16,
         "fields": {
             "recipe": 5,
-            "unit": "cups",
-            "amount": 2,
+            "unit": "grams",
+            "amount": 400,
             "ingredient": "Mozzarella cheese"
         }
     },
@@ -164,8 +164,8 @@
         "pk": 17,
         "fields": {
             "recipe": 6,
-            "unit": "cups",
-            "amount": 2,
+            "unit": "milliliters",
+            "amount": 480,
             "ingredient": "Yogurt"
         }
     },
@@ -174,8 +174,8 @@
         "pk": 18,
         "fields": {
             "recipe": 6,
-            "unit": "tablespoons",
-            "amount": 2,
+            "unit": "grams",
+            "amount": 12,
             "ingredient": "Garam masala"
         }
     },
@@ -184,8 +184,8 @@
         "pk": 19,
         "fields": {
             "recipe": 6,
-            "unit": "cups",
-            "amount": 1,
+            "unit": "milliliters",
+            "amount": 240,
             "ingredient": "Tomato sauce"
         }
     },
@@ -194,8 +194,8 @@
         "pk": 20,
         "fields": {
             "recipe": 7,
-            "unit": "tablespoons",
-            "amount": 2,
+            "unit": "milliliters",
+            "amount": 30,
             "ingredient": "Olive oil"
         }
     },
@@ -214,8 +214,8 @@
         "pk": 22,
         "fields": {
             "recipe": 7,
-            "unit": "tablespoons",
-            "amount": 2,
+            "unit": "milliliters",
+            "amount": 30,
             "ingredient": "Lemon juice"
         }
     },
@@ -224,8 +224,8 @@
         "pk": 23,
         "fields": {
             "recipe": 8,
-            "unit": "cups",
-            "amount": 1,
+            "unit": "grams",
+            "amount": 120,
             "ingredient": "All-purpose flour"
         }
     },
@@ -234,8 +234,8 @@
         "pk": 24,
         "fields": {
             "recipe": 8,
-            "unit": "cups",
-            "amount": 1,
+            "unit": "grams",
+            "amount": 200,
             "ingredient": "Granulated sugar"
         }
     },
@@ -244,8 +244,8 @@
         "pk": 25,
         "fields": {
             "recipe": 8,
-            "unit": "cups",
-            "amount": 1,
+            "unit": "grams",
+            "amount": 200,
             "ingredient": "Brown sugar"
         }
     },
@@ -254,8 +254,8 @@
         "pk": 26,
         "fields": {
             "recipe": 9,
-            "unit": "cups",
-            "amount": 1,
+            "unit": "grams",
+            "amount": 120,
             "ingredient": "Cucumbers"
         }
     },
@@ -264,8 +264,8 @@
         "pk": 27,
         "fields": {
             "recipe": 9,
-            "unit": "cups",
-            "amount": 1,
+            "unit": "grams",
+            "amount": 120,
             "ingredient": "Tomatoes"
         }
     },
@@ -274,8 +274,8 @@
         "pk": 28,
         "fields": {
             "recipe": 9,
-            "unit": "cups",
-            "amount": 0.5,
+            "unit": "grams",
+            "amount": 60,
             "ingredient": "Feta cheese"
         }
     },
@@ -284,8 +284,8 @@
         "pk": 29,
         "fields": {
             "recipe": 10,
-            "unit": "cups",
-            "amount": 1.5,
+            "unit": "grams",
+            "amount": 180,
             "ingredient": "All-purpose flour"
         }
     },
@@ -294,8 +294,8 @@
         "pk": 30,
         "fields": {
             "recipe": 10,
-            "unit": "cups",
-            "amount": 1,
+            "unit": "milliliters",
+            "amount": 240,
             "ingredient": "Milk"
         }
     },
@@ -304,8 +304,8 @@
         "pk": 31,
         "fields": {
             "recipe": 10,
-            "unit": "tablespoons",
-            "amount": 2,
+            "unit": "grams",
+            "amount": 28,
             "ingredient": "Melted butter"
         }
     }
