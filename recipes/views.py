@@ -119,13 +119,10 @@ def new_recipe(request):
                 while bool(request.POST.get(f"ingredient[{i}]")):
                     if request.POST.get(f"unit[{i}]") in ["grams", "oz", "lb", "st"]:
                         unit = "grams"
-                        print("unit is a weight unit")
                     elif request.POST.get(f"unit[{i}]") in ["milliliters", "cup", "floz", "tsp", "tbs"]:
                         unit = "milliliters"
-                        print("unit is a volume unit")
                     else:
                         unit = "units"
-                        print("unit is a units unit")
                     amount = int(request.POST.get(f"amount[{i}]")) * convert[request.POST.get(f"unit[{i}]")]
                     Ingredient.objects.create(recipe=recipe, unit=unit, 
                                             amount=amount, ingredient=request.POST.get(f"ingredient[{i}]"))
@@ -211,7 +208,6 @@ def editRecipe(request, recipe_id):
     if request.user == recipe.creator:
 
         if request.method == "POST":
-            print("changes should be commited now")
 
             convert = {
                 "grams": 1,
@@ -260,20 +256,17 @@ def editRecipe(request, recipe_id):
                     i += 1
                 if len(instructions) > i:
                     for c in range(i, len(instructions)):
-                        print(instruction[c])
-                        instructions[c].delete()
+                        instruction = instructions[c]
+                        instruction.delete()
                 i = 0
                 ingredients = Ingredient.objects.filter(recipe=recipe)
                 while bool(request.POST.get(f"ingredient[{i}]")):
                     if request.POST.get(f"unit[{i}]") in ["grams", "oz", "lb", "st"]:
                         unit = "grams"
-                        print("unit is a weight unit")
                     elif request.POST.get(f"unit[{i}]") in ["milliliters", "cup", "floz", "tsp", "tbs"]:
                         unit = "milliliters"
-                        print("unit is a volume unit")
                     else:
                         unit = "units"
-                        print("unit is a units unit")
                     amount = int(request.POST.get(f"amount[{i}]")) * convert[request.POST.get(f"unit[{i}]")]
 
                     try:
@@ -287,10 +280,10 @@ def editRecipe(request, recipe_id):
                         Ingredient.objects.create(recipe=recipe, unit=unit, 
                                             amount=amount, ingredient=request.POST.get(f"ingredient[{i}]"))
                     i += 1
-                    if len(ingredients) > i:
-                        for c in range(i, len(ingredients)):
-                            print(ingredients[c])
-                            ingredients[c].delete()
+                if len(ingredients) > i:
+                    for c in range(i, len(ingredients)):
+                        ingredient = ingredients[c]
+                        ingredient.delete()
 
 
 
