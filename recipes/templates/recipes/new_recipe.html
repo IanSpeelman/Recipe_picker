@@ -5,7 +5,11 @@ new recipe
 {% endblock %}
 {% block body %}
 <div class="container">
+    {% if action == "edit" %}
+    <h1 class="title is-3">Edit recipe</h1>
+    {% else %}
     <h1 class="title is-3">Create a new recipe</h1>
+    {% endif %}
     {% if action == "edit" %}
     <form action="{% url 'editrecipe' recipe.id %}" method="post">
         {% else %}
